@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html> 
+    <head> 
+        <title>My Restaurant </title>
+        
+        <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    </head>
+    <body> 
+        <header>
+            <div class="logo">
+                <h1>
+                    <i class="fa-solid fa-utensils"></i>
+                    Delicious Restaurant
+                </h1>
+            </div>
+            <div class="cart-icon" onclick="opencart()">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="orderCount">0</span>
+            </div>
+            <div class="order-box" id="cartbox">
+                <span class="close-btn" onclick="closecart()">
+                    <i class="fa-solid fa-xmark"></i>
+                </span>
+            <h4>Cart</h4>
+            <ul id="orderList"></ul>
+            <p id="emptyCart">your cart is empty</p>
+            <h5>Total Price: <span id="totalprice">0</span>€</h5>
+            <div class="cart-buttons">
+
+<button class="main-btn" onclick="clearorders()">clear orders</button> 
+<button class="main-btn" onclick="checkout()">checkout</button>  
+</div>         
+</div>
+<nav>
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#abut">Abut</a>
+    <a href="#contact">contact</a>
+     </nav>
+    </header>
+
+   
+    <section class="hero" id="home">
+        <div class="hero-content">
+        <h2> Welcome to Delicious Restaurant</h2>
+        <p>
+            fresh food , great taste and unfortgettable moments. 
+            
+        </p>
+        <a href="#">View Menu </a> 
+        </div>
+
+    </section>
+    <section class="menu" id="menu">
+        <h2>Our Menu</h2>
+        <input type="text" id="searchInput"
+        placeholder="search food..."
+        onkeyup="searchfood()"
+        class="search-box">
+
+        <div class="cards">
+            <div class="card">
+            <img src="images/pizza1.jpg" alt="Pizza" width="300">
+            <h3>Pizza</h3>
+            <p>Fresh pizza with cheese and vgetables.</p>
+            <span>12€</span>
+            <button onclick=" orderFood('pizza' ,12)">Order Now</button>
+        </div>
+        <div class="card"> 
+            <img src="images/burger.jpg">
+            <h3>Burgur</h3>
+            <p>Delicious burger with fresh ingredients.</p>
+            <span>10€</span>
+            <button onclick="orderFood('burger' ,10)">Order Now</button>
+ 
+        </div>
+        <div class="card">
+            <img src="images/salad.jpg">
+            <h3>Salad</h3>
+            <p>Healty fresh salad </p>
+            <span>8€</span>
+            <button onclick="orderFood('salad',8)">Order Now</button>
+        </div>
+        </div>
+    </section>
+    <section class="abut" id="abut">
+        <h2>Abut us</h2>
+        <p> we are a modern resturant offering fresh food and delicious meals for our customers.</p>
+
+
+    </section>
+
+        <section>
+            <h2> Welcome to our resturant </h2>
+            <p>Fresh food with best quality</p>
+        </section>
+<section class="contact" id="contact">
+    <h2> contact Us</h2> 
+<form>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea placeholder="Your Massage"></textarea>
+    <button type="submit">Send Massage </button>
+</form>
+</section>
+        <footer>
+            <h3>Delicious Restaurant</h3>
+            <p> Address : Schweinfurt Germany </p>
+            <p>Phone : +49 123456789 </p>
+            <p> Email : info@resturant.com</p>
+            <p> 2026 All Rights Reserved</p>
+        </footer>
+        <script src="script.js"></script>
+
+
+    </body>
+    
+</html>

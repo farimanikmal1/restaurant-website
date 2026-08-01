@@ -1,0 +1,456 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f8f8f8;
+
+}
+header {
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+nav {
+    margin-top: 15px;
+
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+    font-size: 18px;
+
+}
+nav a:hover{
+    color: orange;
+}
+section{
+    text-align: center;
+    padding: 50px;
+}
+.hero {
+    background-image: url("images/food1.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 120px;
+}
+
+    .hero-content {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 30px;
+        border-radius: 10px;
+
+
+    }
+
+
+
+.hero h2 {
+    font-size: 40px;
+
+}
+.hero p {
+  font-size: 20px;
+  margin: 20px;
+
+}
+.hero a{
+    background-color: orange;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.menu {
+    padding: 50px; 
+    text-align: center;
+
+
+}
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+
+}
+.card{
+    width: 300px;
+    background-color:white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px  15px  rgba(0, 0, 0, 0.2);
+    transition: 0.4s ease;
+    cursor: pointer
+}
+.card img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.card :hover img{transform: scale(1.1);
+
+}
+
+.card h3 {
+font-size: 24px;
+
+}
+.card button{
+background-color: orange;
+border: none;
+color: white;
+padding: 10px 20px;
+margin-bottom: 20px;
+border-radius: 5px;
+}
+ 
+footer{
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    margin-top: 50px;
+
+}
+footer h3{
+    font-size: 24px;
+
+}
+footer p{
+margin: 10px;
+}
+.about{ 
+    padding: 50px;
+    text-align: center;
+    background-color: #f8f8f8;
+
+}
+.about h3{
+    font-size: 30px;
+margin-bottom: 20px;
+
+}
+.about p{
+    font-size: 18px;
+    line-height: 1.6;
+
+}
+.contact {
+    padding: 50px;
+    text-align: center;
+
+}
+.contact h2 {
+    font-size: 30px;
+    margin-bottom: auto;
+
+}
+.contact form {
+    width: 60%;
+    margin: auto;
+
+}
+.contact input, 
+.contact textarea{
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+
+
+}
+.contact textarea{
+    height: 150px;
+}
+.contact button{
+    background-color: orangered;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+
+}
+.contact button:hover{
+    background-color: darkorange;
+
+
+}
+@media (max-width:768px){
+    nav{
+        flex-direction: column;
+        align-items: center;
+    }
+    .cards{
+        flex-direction: column;
+        align-items: center;
+
+    }
+    .contact form {
+        width: 90%;
+    }
+    .hero h2{
+        font-size: 30px;
+    }
+}
+html{
+    scroll-behavior: smooth;
+}
+.card:hover{
+    transform: translateY(-15px) scale(1.08);
+    box-shadow: 0 20px 40px rgba(0, 0,0, 0.4);
+ }
+.menu h2{
+    margin: 40px;
+    font-size: 36px;
+}
+.card{
+    border-radius: 20px;
+}
+.order-box{
+    color: black;
+    width: 400px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    text-align: left;
+
+}
+.order-box ul{
+list-style: none;
+padding: 0%;
+margin: 15px 0;
+
+}
+.order-box li{
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 12px 40px 12px 12px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    border-left: 4px solid orange;
+
+}
+.order-box strong{
+    color: orange;
+}
+.cart-icon{
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    background: #f8f8f8;
+    color: orange;
+    padding: 12px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+.cart-icon span{
+    color: orange;
+    font-weight: bold;
+    margin-left: 5px;
+
+}
+.order-box{
+    position: fixed;
+    background: white;
+    top: 100px;
+    right: -400px;
+    width: 340px;
+    transition: 0.4s;
+    z-index: 1000;
+border-radius: 15px;
+padding: 20px;
+border: 2px solid #ff8c42;
+box-shadow: 0 10px 30px rgba(0, 0,0, 0.3);
+}
+
+.order-box{
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #ff6b00;
+    margin: 15px;
+    text-align: center;
+}
+.order-box h5{
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff6b00;
+    text-align: center;
+    margin: 15px 0;
+}
+.order-box .main-btn{
+    width: 100%;
+    background: orange;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.order-box button:hover{
+    background: darkred;
+}
+.order-box{
+    right: -420px;
+}
+.order-box.show{
+    right: 20px;
+}
+.close-btn{
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 18px;
+    color: #666;
+    cursor: pointer;
+}
+.close-btn:hover{
+    color: red;
+}
+.main-btn{
+    width: 100%;
+    background: orange;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+ margin-top: 15px;
+ font-size: 16px;
+}
+.main-btn:hover{
+    background: darkorange;
+}
+.cart-item{
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px ;
+    font-size: 12px;
+}
+.cart-item span{
+    flex: 1;
+}
+.delete-btn{
+    position: absolute;
+
+    top: 10px;
+    right: 10px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 50%;
+    color:#666;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    cursor: pointer;
+   width: 20px;
+   height: 20;
+}
+.delete-btn:hover{
+    color: #d60000;
+    background: #ffe5e5;
+
+}
+.cart-buttons {
+    justify-content: center;
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+
+}
+.cart-buttons .main-btn{
+    flex: none;
+    width: 100px;
+    margin-top: 0;
+    padding: 3px;
+    font-size: 12px;
+    height: 20px;
+}
+#emptyCart{
+    text-align: center;
+    color: gray;
+    font-size: 14px;
+    margin: 15px;
+
+}
+.cart-item button{
+    
+    border: none;
+    border-radius: 6px;
+    background: white;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+
+}
+.cart-item button:hover{
+    background: #f5f5f5;
+    border-color: #666;
+    transform: none;
+
+}
+.cart-img{
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: flex;
+    flex-shrink: 0;
+}
+.cart-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.cart-item span{
+    margin: 0 5px;
+    font-weight: 600;
+
+}
+.search-box{
+    width: 320;
+    padding: 12px 18px;
+    margin: 20px auto 40px;
+    display: block;
+    border: 2px solid orange;
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+
+
+}
+.search-box :focus{
+    border-color: darkorange;
+    box-shadow: 0 0 8px rgba(255, 140, 0 , 3 );
+}
+
