@@ -263,3 +263,11 @@ function searchfood() {
         }
     });
 }
+
+function openOffers() {
+    document.getElementById("offersBox").classList.add("show");
+}
+
+function closeOffers() {
+    document.getElementById("offersBox").classList.remove("show");
+}
