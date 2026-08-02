@@ -651,7 +651,7 @@ footer p {
         color:white;
         cursor: pointer;
         position: absolute;
-        right: 90px;
+        right: 100px;
         top: 20px;
         z-index: 2000;
     }
