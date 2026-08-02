@@ -638,7 +638,8 @@ footer p {
     }
 
     .logo{
-        flex: 1;
+        flex: none;
+        margin-left: 15px;
     }
 
     .logo h1{
@@ -651,7 +652,7 @@ footer p {
         color:white;
         cursor: pointer;
         position: absolute;
-        right: 100px;
+        right: 90px;
         top: 20px;
         z-index: 2000;
     }
