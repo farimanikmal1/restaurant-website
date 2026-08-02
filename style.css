@@ -32,7 +32,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 nav {
@@ -613,6 +613,9 @@ footer p {
 
 .offer-card button:hover{
     background: #e65c00;
+}
+
+
 /* ===========================
    Mobile Responsive
 =========================== */
@@ -624,14 +627,11 @@ footer p {
     cursor: pointer;
 }
 
-@media (max-width:768px){
+@media (max-width:770px){
 
-    .menu-toggle{
-display: block;
-    }
-    
     header{
         position: relative;
+        display: flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
@@ -642,12 +642,19 @@ display: block;
     }
 
     .logo h1{
-        font-size: 26px;
+        font-size: 20px;
     }
 
     .menu-toggle{
         display: block;
-        margin-right: 90px;
+        margin-right: 20px;
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        z-index: 2000;
     }
 
     nav{
@@ -716,5 +723,4 @@ display: block;
     .offers-box.show{
         right: 5%;
     }
-}
 }
