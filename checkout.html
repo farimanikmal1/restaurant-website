@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Checkout</title>
+
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+    <body>
+        <section class="checkout">
+            <h2>Checkout</h2>
+            <form class="checkout-form" onsubmit="submitOrder(event)">
+
+                <input type="text" placeholder="full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number" required>
+                <textarea placeholder="Delivery Address" required></textarea>
+
+                <select required>
+                    <option value="">Choos Payment Method</option>
+                    <option>Cash On Delivery</option>
+                    <option>Credit card</option>
+                    <option>PayPal</option>
+
+                </select>
+                <button type="submit">Place Order</button>
+            </form>
+
+<div id="successModal" class="success-modal">
+    <div class="success-content">
+        <div class="success-icon"></div>
+        <h2>Order Submitted!</h2>
+        <p>Thank you for your order
+        <br>
+        Your food will arrive in about 20-30 minutes.
+        </p>
+        <button onclick="closeModal()">
+            Back to Home
+        </button>
+    </div>
+</div>
+
+        </section>
+        <script src="script.js"></script>
+    </body>
+</html>

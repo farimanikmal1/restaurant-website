@@ -315,3 +315,37 @@ String(seconds).padStart(2,"0");
         document.querySelectorAll(".Offer-card button").disabled = true;
     }
 },1000);
+
+window.onscroll =function(){
+    scrollFuncation ();
+
+};
+
+function scrollFuncation(){
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        document.getElementById("topBtn").style.display ="block";
+    }
+else {
+    document.getElementById("topBtn").style.display ="none";
+}
+}
+
+function goTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+
+
+}
+
+function submitOrder(event){
+    event.preventDefault();
+    document.getElementById("successModal").style.display = "flex";
+
+}
+
+function closeModal(){
+
+    document.getElementById("successModal").style.display ="none";
+    window.location.href = "index.html";
+
+}

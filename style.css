@@ -615,6 +615,222 @@ footer p {
     background: #e65c00;
 }
 
+/*============================
+Back To Top Button 
+================================*/
+
+#topBtn{
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 50%;
+
+    background: #ff6600;
+    color: white;
+
+    font-size: 22px;
+    cursor: pointer;
+
+    display: none;
+
+    box-shadow:  0 6px 18px rgba(0, 0, 0, .3);
+
+    transition: all .3s ease;
+
+    z-index: 999;
+}
+
+#topbtn:hover{
+    background: #e65c00;
+    transform: translateY(-5px) scale(1.08);
+    
+}
+
+
+
+/*==================================
+Checkout
+====================================*/
+
+
+
+
+.checkout {
+    padding: 80px 20px;
+    background: #f8f8f8;
+    min-height: 100vh;
+
+}
+
+.checkout h2{
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.checkout-form{
+    max-width: 650px;
+    margin: auto;
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .15);
+
+}
+
+.checkout-form input,
+.checkout-form textarea,
+.checkout-form select{
+
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    font-size: 16px;
+    outline: none;
+
+}
+
+.checkout-form textarea{
+    height: 120px;
+    resize: none;
+
+
+}
+
+.checkout-form input:focus,
+.checkout-form textarea:focus,
+.checkout-form select:focus {
+
+    border-color: orange;
+    box-shadow: 0 0 8px rgba(222, 165, 0, .3);
+
+}
+
+.checkout-form button{
+
+    width: 100%;
+    padding: 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 18px;
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+.checkout-form button:hover{
+
+    background: darkorange;
+
+}
+
+
+/*=================================
+success Modal 
+====================================*/
+
+.success-modal {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, .6);
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 2000;
+}
+
+    .success-content{
+
+        width: 90%;
+        max-width: 450px;
+
+        background: white;
+
+        padding: 40px  30px;
+        border-radius: 20px;
+        text-align: center;
+
+        box-shadow:  0 10px 30px rgba(0, 0, 0, .3);
+
+        animation: popup .4s ease;
+
+    }
+
+    .success-icon{
+
+        font-size: 70px;
+        margin-bottom: 20px;
+
+
+    }
+
+    .success-content h2{
+
+        color: #28a745;
+        margin-bottom: 15px;
+
+    }
+
+    .success-content p{
+        font-size: 18px;
+        color: #555;
+
+        line-height: 1.7;
+
+        margin-bottom: 25px;
+
+    }
+    .success-content button {
+
+        background: orange;
+        color: white;
+        border: none;
+        padding: 14px 30px;
+        border-radius: 8px;
+
+        font-size: 17px;
+        cursor: pointer;
+        transition: .3s;
+    }
+
+    .success-content button:hover{
+        background: darkorange;
+
+    }
+
+    @keyframes popup{
+        form{
+
+            transform: scale(.7);
+            opacity: 0;
+        }
+
+        to{
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
 
 /* ===========================
    Mobile Responsive
@@ -751,5 +967,5 @@ Counddown
     border-radius: 8px;
     font-size: 22px;
     letter-spacing: 2px;
-    
+
 }
