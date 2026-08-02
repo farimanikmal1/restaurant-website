@@ -275,3 +275,37 @@ function closeOffers() {
 function togglemenu(){
     document.querySelector("nav").classList.toggle("active");
 }
+
+let hours = 2;
+let minutes = 0;
+let seconds = 0;
+
+function updateTimer(){
+let timer = document.getElementById("timer");
+
+timer.innerHTML =
+String(hours).padStart(2,"0") +":" +
+String(minutes).padStart(2,"0") + ":" +
+String(seconds).padStart(2,"0");
+}
+
+setInterval (function (){
+    if (seconds > 0) {
+        seconds--;
+    }
+    else{
+        if (minutes > 0){
+            minutes--;
+            seconds = 59;
+
+        }
+        else {
+            if (hours > 0){
+                hours--;
+                minutes = 59;
+                seconds = 59;
+            }
+        }
+    }
+    updateTimer();
+},1000);

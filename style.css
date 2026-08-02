@@ -727,3 +727,29 @@ footer p {
         right: 5%;
     }
 }
+
+
+/*=================
+Counddown
+===================*/
+
+.countdown{
+    text-align: center;
+    margin: 15px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+
+}
+
+#timer{
+    display: inline-block;
+    margin-top: 8px;
+    padding: 8px 15px;
+    background: #ff6600;
+    color: white;
+    border-radius: 8px;
+    font-size: 22px;
+    letter-spacing: 2px;
+    
+}
