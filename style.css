@@ -552,9 +552,7 @@ footer p {
 @media (max-width:768px) {
 
     nav {
-        flex-direction: column;
-        margin-right: 80px;
-        gap: 25px;
+        display: none;
     }
 
     .hero {
@@ -692,35 +690,10 @@ footer p {
     color: white;
     cursor: pointer;
 }
-
+/*===================== */
 /* Mobile */
-@media (max-width:768px){
 
-    .menu-toggle{
-        display:block;
-    }
-
-    nav{
-        display:none;
-        position:absolute;
-        top:80px;
-        right:20px;
-        background:#222;
-        width:220px;
-        border-radius:10px;
-        padding:15px;
-    }
-
-    nav.active{
-        display:flex;
-        flex-direction:column;
-    }
-
-    nav a{
-        margin:10px 0;
-    }
-}
-
+/*======================*/
 
 .menu-toggle{
     display: none;
