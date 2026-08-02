@@ -647,12 +647,11 @@ footer p {
 
     .menu-toggle{
         display: block;
-        margin-right: 20px;
-        font-size: 30px;
-        color: black;
+        font-size: 25px;
+        color:white;
         cursor: pointer;
         position: absolute;
-        right: 20px;
+        right: 90px;
         top: 20px;
         z-index: 2000;
     }
@@ -713,6 +712,9 @@ footer p {
     .cart-icon{
         right: 15px;
         top: 15px;
+        padding: 8px 12px;
+        font-size: 18px;
+        border-radius: 25px;
     }
 
     .offers-box{
