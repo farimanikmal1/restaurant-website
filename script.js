@@ -310,5 +310,8 @@ String(seconds).padStart(2,"0");
     updateTimer();
     if (hours == 0 && minutes == 0 && seconds == 0){
         clearInterval(timerInterval);
+
+        timer.innerHTML ="Offer Expired";
+        document.querySelectorAll(".Offer-card button").disabled = true;
     }
 },1000);
