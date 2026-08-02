@@ -550,7 +550,25 @@ footer p {
 =========================== */
 
 @media (max-width:768px) {
+@media (max-width:768px){
 
+    header{
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu-toggle{
+        display: block;
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+        margin-right: 90px;
+    }
+
+    .logo{
+        flex: 1;
+    }
+}
     nav {
         display: none;
     }
