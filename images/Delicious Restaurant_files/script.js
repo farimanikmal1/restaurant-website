@@ -271,7 +271,3 @@ function openOffers() {
 function closeOffers() {
     document.getElementById("offersBox").classList.remove("show");
 }
-
-function togglemenu(){
-    document.querySelector("nav").classList.toggle("active");
-}
