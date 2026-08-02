@@ -720,3 +720,39 @@ footer p {
         margin:10px 0;
     }
 }
+
+
+.menu-toggle{
+    display: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+}
+
+@media (max-width:768px){
+
+    header{
+        flex-wrap: nowrap;
+    }
+
+    .menu-toggle{
+        display: block;
+        order: 2;
+    }
+
+    nav{
+        display: none;
+        width: 100%;
+        margin-top: 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav.active{
+        display: flex;
+    }
+
+    .logo{
+        font-size: 18px;
+    }
+}
