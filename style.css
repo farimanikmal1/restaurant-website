@@ -556,6 +556,44 @@ footer p {
         justify-content: space-between;
         align-items: center;
     }
+    @media (max-width:768px){
+
+    header{
+        position: relative;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu-toggle{
+        display: block;
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+        margin-right: 90px;
+    }
+
+    nav{
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #222;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 0;
+        gap: 20px;
+    }
+
+    nav.active{
+        display: flex;
+    }
+
+    .logo{
+        flex: 1;
+    }
+}
 
     .menu-toggle{
         display: block;
@@ -613,7 +651,7 @@ footer p {
         right: 15px;
         top: 15px;
     }
-}
+
 .logo h1{
     font-size: 26px;
     margin-left: 15px;
