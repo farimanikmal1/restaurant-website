@@ -545,31 +545,108 @@ footer p {
     margin-top: 15px;
 }
 
+.offers-box{
+    position: fixed;
+    top: 80px;
+    right: -450px;
+    width: 380px;
+    height: 500px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    padding: 20px;
+    overflow-y: auto;
+    transition: .4s;
+    z-index: 1000;
+}
+
+.offers-box.show{
+    right: 20px;
+}
+
+.offers-box h4{
+    text-align: center;
+    color: #ff6600;
+    margin-bottom: 20px;
+}
+
+.offer-card{
+    background: #f8f8f8;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.offer-card img{
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.offer-card h3{
+    margin: 10px 0;
+}
+
+.offer-card p{
+    font-size: 14px;
+    color: #555;
+}
+
+.offer-card span{
+    display: block;
+    font-size: 20px;
+    color: #ff6600;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.offer-card button{
+    background: #ff6600;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.offer-card button:hover{
+    background: #e65c00;
 /* ===========================
    Mobile Responsive
 =========================== */
 
-@media (max-width:768px) {
+.menu-toggle{
+    display: none;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+}
 
+@media (max-width:768px){
 
-    header{
-        justify-content: space-between;
-        align-items: center;
+    .menu-toggle{
+display: block;
     }
-    @media (max-width:768px){
-
+    
     header{
         position: relative;
-        flex-wrap: nowrap;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .logo{
+        flex: 1;
+    }
+
+    .logo h1{
+        font-size: 26px;
     }
 
     .menu-toggle{
         display: block;
-        font-size: 30px;
-        color: white;
-        cursor: pointer;
         margin-right: 90px;
     }
 
@@ -590,198 +667,54 @@ footer p {
         display: flex;
     }
 
-    .logo{
-        flex: 1;
-    }
-}
-
-    .menu-toggle{
-        display: block;
-        font-size: 30px;
-        color: white;
-        cursor: pointer;
-        margin-right: 90px;
-    }
-
-    .logo{
-        flex: 1;
-    }
-}
-    nav {
-        display: none;
-    }
-
-    .hero {
+    .hero{
         height: auto;
         padding: 80px 20px;
     }
 
-    .hero h2 {
+    .hero h2{
         font-size: 30px;
     }
 
-    .hero p {
+    .hero p{
         font-size: 18px;
     }
 
-    .cards {
+    .cards{
         flex-direction: column;
         align-items: center;
     }
 
-    .card {
+    .card{
         width: 90%;
         max-width: 350px;
     }
 
-    .contact form {
+    .contact form{
         width: 90%;
     }
 
-    .order-box {
+    .order-box{
         width: 90%;
         right: -100%;
     }
 
-    .order-box.show {
+    .order-box.show{
         right: 5%;
     }
 
-    .cart-icon {
+    .cart-icon{
         right: 15px;
         top: 15px;
     }
 
-.logo h1{
-    font-size: 26px;
-    margin-left: 15px;
-
-}
-.offers-box{
-    position: fixed;
-    top: 80px;
-    right: -450px;
-    width: 380px;
-    height: 500px;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.3);
-    padding: 20px;
-    overflow-y: auto;
-    transition: .4s;
-    z-index: 1000;
-}
-
-
-/* ===========================
-   Offer Box
-=========================== */
-
-.offers-box.show{
-    right: 20px;
-    position: fixed;
-}
-
-.offers-box h4{
-    text-align: center;
-    color: #ff6600;
-    margin-bottom:20px;
-}
-
-.offer-card{
-    background:#f8f8f8;
-    border-radius:12px;
-    padding:15px;
-    margin-bottom:20px;
-    text-align:center;
-}
-
-.offer-card img{
-    width:100%;
-    height:180px;
-    object-fit:cover;
-    border-radius:10px;
-}
-
-.offer-card h3{
-    margin:10px 0;
-}
-
-.offer-card p{
-    font-size:14px;
-    color:#555;
-}
-
-.offer-card span{
-    display:block;
-    font-size:20px;
-    color:#ff6600;
-    font-weight:bold;
-    margin:10px 0;
-}
-
-.offer-card button{
-    background:#ff6600;
-    color:white;
-    border:none;
-    padding:10px 20px;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.offer-card button:hover{
-    background:#e65c00;
-}
-
-
-
-/* ===========================
-   menu-toggle
-=========================== */
-
-
-.menu-toggle{
-    display: none;
-    font-size: 28px;
-    color: white;
-    cursor: pointer;
-}
-/*===================== */
-/* Mobile */
-
-/*======================*/
-
-.menu-toggle{
-    display: none;
-    font-size: 28px;
-    color: white;
-    cursor: pointer;
-}
-
-@media (max-width:768px){
-
-    header{
-        flex-wrap: nowrap;
+    .offers-box{
+        width: 90%;
+        right: -100%;
     }
 
-    .menu-toggle{
-        display: block;
-        order: 2;
+    .offers-box.show{
+        right: 5%;
     }
-
-    nav{
-        display: none;
-        width: 100%;
-        margin-top: 20px;
-        flex-direction: column;
-        text-align: center;
-    }
-
-    nav.active{
-        display: flex;
-    }
-
-    .logo{
-        font-size: 18px;
-    }
+}
 }
