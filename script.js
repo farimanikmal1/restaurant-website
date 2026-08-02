@@ -289,7 +289,7 @@ String(minutes).padStart(2,"0") + ":" +
 String(seconds).padStart(2,"0");
 }
 
-setInterval (function (){
+ let timerInterval =setInterval (function (){
     if (seconds > 0) {
         seconds--;
     }
@@ -308,4 +308,7 @@ setInterval (function (){
         }
     }
     updateTimer();
+    if (hours == 0 && minutes == 0 && seconds == 0){
+        clearInterval(timerInterval);
+    }
 },1000);
