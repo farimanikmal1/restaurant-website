@@ -380,3 +380,32 @@ if (document.getElementById("totalPrice")) {
 
     window.location.href = "checkout.html";
 }
+
+
+//======================
+//Payment 
+//========================
+
+function payByCard() {
+    alert("Credit Card payment is not connected yet.");
+}
+
+function payByPayPal() {
+    alert("PayPal payment is not connected yet.");
+}
+
+function payByApple() {
+    alert("Apple Pay is not connected yet.");
+}
+
+function payByGoogle() {
+    alert("Google Pay is not connected yet.");
+}
+
+function cashOnDelivery() {
+    alert("Your order has been placed successfully!");
+
+    localStorage.removeItem("cart");
+
+    window.location.href = "index.html";
+}
