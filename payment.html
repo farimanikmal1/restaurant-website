@@ -13,35 +13,48 @@
 
     <h2>Payment</h2>
 
-    <p class="payment-text">
-        Choose your payment method
+    <p class="payment-subtitel">
+
+        Enter your card information
     </p>
 
-    <div class="payment-methods">
+    <form class="card-form" onsubmit="payNow(event)">
 
-       <button class="payment-btn" onclick="payByCard()">
-    💳 Credit / Debit Card
-</button>
+       <input type="text" placeholder="card Holder Name" required>
+       <input type="text" placeholder="Card Number" maxlength="19" required>
 
-<button class="payment-btn" onclick="payByPayPal()">
-    🅿️ PayPal
-</button>
+       <div class="card-row">
+        <input type="text" placeholder="MM/YY" required>
+        <input type="password"
+        placeholder="CVV"
+        maxlength="3"
+        required>
+       </div>
 
-<button class="payment-btn" onclick="payByApple()">
-    🍎 Apple Pay
-</button>
 
-<button class="payment-btn" onclick="payByGoogle()">
-    🤖 Google Pay
-</button>
-
-<button class="payment-btn" onclick="cashOnDelivery()">
-    💵 Cash On Delivery
-</button>
-
-    </div>
-
+       <div class="card-logos">
+        <img src="images/Visa.jpg">
+        <img src="images/Mastercard.jpg">
+        <img src="images/Paypal.jpg">
+        <img src="images/Apple pay.jpg">
+        <img src="images/Googal pay.jpg">
+       </div>
+       <button type="submit" class="payment-btn">Pay Now</button>
+</form>
 </section>
+
+<div id="paymentSuccess" class="success-modal">
+
+    <div class="success-content">
+        <h2>Payment Successful!</h2>
+
+        <p> Thank you for your order 
+            <br>
+            Your order has been to the restaurant.
+        </p>
+        <button onclick="backHome()">Back to Home</button>
+    </div>
+</div>
 
 <script src="script.js"></script>
 

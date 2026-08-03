@@ -6,6 +6,13 @@ let count = 0;
 let orders = [];
 let totalprice = 0;
 
+let savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+orders = savedCart;
+count = orders.reduce((sum, item ,) => sum + item.quantity ,0);
+
+updateCart();
+
+
 // ==========================
 // Add Food
 // ==========================
@@ -338,7 +345,7 @@ function goTop() {
 
 function submitOrder(event){
     event.preventDefault();
-    document.getElementById("successModal").style.display = "flex";
+    window.location.href = "payment.html";
 
 }
 
@@ -415,14 +422,20 @@ function cashOnDelivery() {
 // card-payment
 //=======================
 
-function payNow(event){
 
+
+function payNow(event) {
     event.preventDefault();
 
-    alert("✅ Payment Successful!");
+    document.getElementById("paymentSuccess") .style.display= "flex";
+
+}
+
+function backHome(){
 
     localStorage.removeItem("cart");
-
-    window.location.href = "index.html";
+    count = 0;
+    orders = [];
+    window.location.href ="index.html";
 
 }

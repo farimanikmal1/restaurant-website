@@ -1147,3 +1147,69 @@ card-payment
     background:#e65c00;
     transform:translateY(-2px);
 }
+
+
+
+
+
+
+/*========================================
+payment Card
+===========================================*/
+
+.payment-subtitel {
+    text-align:center;
+    color:#666;
+    margin-bottom:15px;
+    margin-top: 8px;
+}
+
+.card-form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.card-form input{
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.card-row{
+    display:flex;
+    gap:15px;
+}
+
+.card-row input{
+    flex:1;
+}
+
+.card-logos{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:10px;
+}
+
+.card-logos img{
+    width:55px;
+    height:35px;
+    object-fit:contain;
+}
+
+.payment-btn{
+    margin-top:20px;
+    padding:15px;
+    background:#ff7a00;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.payment-btn:hover{
+    background:#e86800;
+}
