@@ -13,16 +13,34 @@
         <section class="checkout">
             <h2>Checkout</h2>
             <form class="checkout-form" onsubmit="submitOrder(event)">
-                <input type="text" placeholder="full Name" required>
-                <input type="email" placeholder="Email Address" required>
-                <input type="tel" placeholder="Phone Number" required>
-                <textarea placeholder="Delivery Address" required></textarea>
+                <h3>Customer information</h3>
+
+                <div class="input-row">
+                    <input type="text" placeholder="First Name" maxlength="50" required>
+
+                    <input type="text" placeholder="Last Name" maxlength="50" required>
+                </div>
+
+                <input type="email" placeholder="example@email.com" maxlength="100" required>
+                <input type="tel" placeholder="+49 15123456789" pattern="^\+?[0-9 ]{8,15}$" maxlength="15" required>
+
+                <h3>Delivery Address </h3>
+                <input type="text" placeholder="Street and House Number" maxlength="80" required>
+
+                <input type="text" placeholder="Apartment (option)" maxlength="20">
+
+                <div class="input-row">
+                    <input type="text" placeholder="Postal Code (PLZ)" maxlength="5" pattern="[0-9]{5}" required>
+                    <input type="text" placeholder="City" maxlength="50" required>
+
+                </div>
+
 
                 <select required>
-                    <option value="">Choos Payment Method</option>
-                    <option>Cash On Delivery</option>
-                    <option>Credit card</option>
-                    <option>PayPal</option>
+                    <option value="">Select Country</option>
+                    <option>Germany</option>
+                    <option>Austria</option>
+                    <option>Switzerland</option>
                 </select>
 
                 <div class="order-summary">

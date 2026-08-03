@@ -736,6 +736,27 @@ Checkout
 
 }
 
+.checkout h3 {
+    margin-top: 0px;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.checkout-form input,
+.checkout-form select,
+.checkout-form textarea{
+
+    height: 55px;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.checkout-form textarea{
+    height: 120;
+    resize: none;
+}
+
+
 
 /*=================================
 success Modal 
@@ -1212,4 +1233,18 @@ payment Card
 
 .payment-btn:hover{
     background:#e86800;
+}
+
+
+/*====================
+input-row
+=======================*/
+
+.input-row{
+    display: flex;
+    gap: 15px;
+
+}
+.input-row input{
+    flex: 1;
 }
