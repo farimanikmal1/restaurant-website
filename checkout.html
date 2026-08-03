@@ -28,8 +28,7 @@
                 <div class="order-summary">
                 <h3>Your Order</h3>
 
-                <p> Total Items: <span id="totalIems">0</span></p>
-
+              <p>Total Items: <span id="totalItems">0</span></p>
                 <h3>Total: <span id="totalPrice">0 €</span></h3>
                </div>
 
@@ -52,5 +51,24 @@
 
         </section>
         <script src="script.js"></script>
+
+        <script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let totalPrice = document.getElementById("totalPrice");
+let totalItems = document.getElementById("totalItems");
+
+let total = 0;
+let items = 0;
+
+cart.forEach(function(item){
+    total += item.price * item.quantity;
+    items += item.quantity;
+});
+
+totalItems.innerText = items;
+totalPrice.innerText = total.toFixed(2) + " €";
+</script>
+
     </body>
 </html>

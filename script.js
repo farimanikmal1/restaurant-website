@@ -349,22 +349,24 @@ function closeModal(){
 
 }
 
-let cart =JSON.parse(localStorage.getItem("cart"))|| [];
+if (document.getElementById("totalPrice")) {
 
-            let cartItems =document.getElementById("cartItems");
-            let totalPrice =document.getElementById("totalPrice");
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-            let total = 0;
+    let total = 0;
+    let totalItems = 0;
 
-let totalItems = 0;
+    cart.forEach(function(item) {
+        total += item.price * item.quantity;
+        totalItems += item.quantity;
+    });
 
-cart.forEach(function(item) {
-    total += item.price * item.quantity;
-    totalItems += item.quantity;
-});
+    if (document.getElementById("totalItems")) {
+        document.getElementById("totalItems").innerText = totalItems;
+    }
 
-document.getElementById("totalItems").innerText = totalItems;
-document.getElementById("totalPrice").innerText = total.toFixed(2) + " €";
+    document.getElementById("totalPrice").innerText = total.toFixed(2) + " €";
+}
 
 
    function checkout() {
