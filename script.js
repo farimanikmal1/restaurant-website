@@ -409,3 +409,20 @@ function cashOnDelivery() {
 
     window.location.href = "index.html";
 }
+
+
+//======================
+// card-payment
+//=======================
+
+function payNow(event){
+
+    event.preventDefault();
+
+    alert("✅ Payment Successful!");
+
+    localStorage.removeItem("cart");
+
+    window.location.href = "index.html";
+
+}

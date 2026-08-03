@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Card Payment</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<section class="card-payment">
+
+    <div class="payment-card">
+
+        <h2>💳 Card Payment</h2>
+
+        <p class="payment-subtitle">
+
+            Enter your card information
+
+        </p>
+
+        <form onsubmit="payNow(event)">
+
+            <input
+
+                type="text"
+
+                placeholder="Card Holder Name"
+
+                required
+
+            >
+
+            <input
+
+                type="text"
+
+                placeholder="Card Number"
+
+                maxlength="19"
+
+                required
+
+            >
+
+            <div class="card-row">
+
+                <input
+
+                    type="text"
+
+                    placeholder="MM / YY"
+
+                    maxlength="5"
+
+                    required
+
+                >
+
+                <input
+
+                    type="password"
+
+                    placeholder="CVV"
+
+                    maxlength="3"
+
+                    required
+
+                >
+
+            </div>
+
+            <button type="submit" class="pay-btn">
+
+                Pay Now
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
