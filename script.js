@@ -349,3 +349,24 @@ function closeModal(){
     window.location.href = "index.html";
 
 }
+
+let cart =JSON.parse(localStorage.getItem("cart"))|| [];
+
+            let cartItems =document.getElementById("cartItems");
+            let totalPrice =document.getElementById("totalPrice");
+
+            let total = 0;
+
+            cart.forEach (function(item){
+                let div =document.createElement("div");
+
+                div.innerHTML=`
+                <p>${item.name} x ${item.quantity} - ${item.price * item.quantity} €</p>;`
+
+                cartItems.appendChild(div);
+                total += item.price * item.quantity;
+
+                
+            });
+
+            totalPrice.innerText = total.toFixed(2)+ "€";

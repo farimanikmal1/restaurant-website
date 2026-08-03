@@ -13,7 +13,6 @@
         <section class="checkout">
             <h2>Checkout</h2>
             <form class="checkout-form" onsubmit="submitOrder(event)">
-
                 <input type="text" placeholder="full Name" required>
                 <input type="email" placeholder="Email Address" required>
                 <input type="tel" placeholder="Phone Number" required>
@@ -24,10 +23,18 @@
                     <option>Cash On Delivery</option>
                     <option>Credit card</option>
                     <option>PayPal</option>
-
                 </select>
+
+                <div class="order-summary">
+                <h3>Your Order</h3>
+
+                <div id="cartItems"></div>
+
+                <h3>Total: <span id="totalPrice">0 €</span></h3>
+               </div>
+
                 <button type="submit">Place Order</button>
-            </form>
+                </form>
 
 <div id="successModal" class="success-modal">
     <div class="success-content">
