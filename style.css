@@ -899,7 +899,7 @@ logo
 }
 .logo h1{
     font-family: "Playfair Display", serif;
-    font-size: 34px;
+    font-size: 30px;
     font-weight: 700;
     color: white;
     margin: 0;
@@ -915,8 +915,15 @@ logo
 
 .navbar{
     display: flex;
+    align-items: center;
     margin-left: auto;
-    margin-right: 40px;
+    margin-right: 80px;
+    gap: 35px;
+}
+.header-right{
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 @media (max-width:770px){
