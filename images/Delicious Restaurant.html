@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <!-- saved from url=(0062)file:///C:/Users/Farima/Desktop/Resturant%20Website/index.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+
+<link href="./Delicious Restaurant_files/css2" rel="stylesheet">
+    
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,64 +17,133 @@
 </head>
 
 <body>
-
     <header>
 
-        <div class="logo">
-            <h1>
-                <i class="fa-solid fa-utensils"></i>
-                Delicious Restaurant
-            </h1>
+    <!-- Logo -->
+    <div class="logo">
+            <i class="fa-solid fa-cloche"></i>
+            <h1>Delicious Restaurant</h1>
+        
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="navbar">
+        <a href="file:///C:/Users/Farima/Desktop/Resturant%20Website/index.html#home" class="active">Home</a>
+        <a href="javascript:void(0)" onclick="openOffers()">Offers</a>
+        <a href="file:///C:/Users/Farima/Desktop/Resturant%20Website/index.html#menu">Menu</a>
+        <a href="file:///C:/Users/Farima/Desktop/Resturant%20Website/index.html#about">About</a>
+        <a href="file:///C:/Users/Farima/Desktop/Resturant%20Website/index.html#contact">Contact</a>
+        <a href="file:///C:/Users/Farima/Desktop/Resturant%20Website/Orders.html">Orders</a>
+    </nav>
+
+    <!-- Right Icons -->
+    <div class="header-right">
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
         </div>
 
-        <div class="cart-icon" onclick="opencart()">
+        <div class="cart-icon" onclick="openCart()">
             <i class="fa-solid fa-cart-shopping"></i>
             <span id="orderCount">0</span>
         </div>
 
-        <div class="order-box" id="cartbox">
+    </div>
 
-            <span class="close-btn" onclick="closecart()">
+    <!-- Cart -->
+    <div class="order-box" id="cartbox">
+
+        <span class="close-btn" onclick="closecart()">
+            <i class="fa-solid fa-xmark"></i>
+        </span>
+
+        <h4>Cart</h4>
+
+        <ul id="orderList">
+        <li class="cart-item">
+
+            <img src="./Delicious Restaurant_files/pizza1.jpg" class="cart-img">
+
+            <span>pizza</span>
+
+            <button onclick="decreaseQuantity(&#39;pizza&#39;)">-</button>
+
+            <span>1</span>
+
+            <button onclick="increaseQuantity(&#39;pizza&#39;)">+</button>
+
+            <span>12 €</span>
+
+            <button class="delete-btn" onclick="removeItem(&#39;pizza&#39;)">
+
                 <i class="fa-solid fa-xmark"></i>
-            </span>
 
-            <h4>Cart</h4>
+            </button>
 
-            <ul id="orderList"></ul>
+        </li></ul>
 
-            <p id="emptyCart" style="display: block;">Your cart is empty.</p>
+        <p id="emptyCart" style="display: none;">
+            Your cart is empty.
+        </p>
 
-            <h5>
-                Total Price:
-                <span id="totalprice">0</span> €
-            </h5>
+        <h5>
+            Total:
+            <span id="totalprice">12</span> €
+        </h5>
 
-            <div class="cart-buttons">
-                <button class="main-btn" onclick="clearorders()">
-                    Clear Orders
-                </button>
+        <div class="cart-buttons">
 
-                <button class="main-btn" onclick="checkout()">
-                    Checkout
-                </button>
-            </div>
+            <button class="main-btn" onclick="clearorders()">
+                Clear Orders
+            </button>
+
+            <button class="main-btn" onclick="checkout()">
+                Checkout
+            </button>
 
         </div>
 
-        <div class="menu-toggle" onclick="togglemenu()">
-            <i class="fa-solid fa-bars"></i>
-        </div>
+    </div>
 
+</header>
 
-        <nav>
-            <a href="file:///C:/Users/Farima/Desktop/Resturant%20Website/index.html#home">Home</a>
-            <a href="javascript:void(0)" onclick="openOffers()">Offers</a>
-            <a href="file:///C:/Users/Farima/Desktop/Resturant%20Website/index.html#menu">Menu</a>
-            <a href="file:///C:/Users/Farima/Desktop/Resturant%20Website/index.html#about">About</a>
-            <a href="file:///C:/Users/Farima/Desktop/Resturant%20Website/index.html#contact">Contact</a>
-        </nav>
+<div class="side-menu" id="sideMenu">
 
-    </header>
+    <span class="close-menu" onclick="closeMenu()">
+        <i class="fa-solid fa-xmark"></i>
+    </span>
+
+    <a href="file:///C:/Users/Farima/Desktop/Resturant%20Website/index.html#home">
+        <i class="fa-solid fa-house"></i>
+        Home
+    </a>
+
+    <a href="javascript:void(0)" onclick="openOffers()">
+        <i class="fa-solid fa-gift"></i>
+        Offers
+    </a>
+
+    <a href="file:///C:/Users/Farima/Desktop/Resturant%20Website/index.html#menu">
+        <i class="fa-solid fa-utensils"></i>
+        Menu
+    </a>
+
+    <a href="file:///C:/Users/Farima/Desktop/Resturant%20Website/index.html#about">
+        <i class="fa-solid fa-circle-info"></i>
+        About
+    </a>
+
+    <a href="file:///C:/Users/Farima/Desktop/Resturant%20Website/index.html#contact">
+        <i class="fa-solid fa-envelope"></i>
+        Contact
+    </a>
+
+    <a href="file:///C:/Users/Farima/Desktop/Resturant%20Website/Orders.html">
+        <i class="fa-solid fa-box"></i>
+        Orders
+    </a>
+
+</div>
 
     <section class="hero" id="home">
 
@@ -92,10 +166,10 @@
         <h2>Our Menu</h2>
 
         <input type="text" id="searchInput" class="search-box" placeholder="Search food..." onkeyup="searchfood()">
-
+       
         <div class="cards">
-
             <div class="card">
+            <span class="favorite" onclick="toggleFavorite(this)">♡</span>
 
                 <img src="./Delicious Restaurant_files/pizza1.jpg" alt="Pizza">
 
@@ -104,15 +178,30 @@
                 <p>Fresh pizza with cheese and vegetables.</p>
 
                 <span>12 €</span>
+                <div class="rating">
 
+    <div class="stars">
+        <span onclick="rateFood(this,1)" class="active">★</span>
+        <span onclick="rateFood(this,2)" class="active">★</span>
+        <span onclick="rateFood(this,3)" class="active">★</span>
+        <span onclick="rateFood(this,4)" class="active">★</span>
+        <span onclick="rateFood(this,5)" class="active">★</span>
+    </div>
+
+    <div class="review-text">
+        <span class="average">5.0</span>
+        <span class="dot">•</span>
+        <span class="review">25 Reviews</span>
+    </div>
+
+</div>
                 <button onclick="orderFood(&#39;pizza&#39;,12)">
                     Order Now
                 </button>
-
             </div>
 
             <div class="card">
-
+                <span class="favorite" onclick="toggleFavorite(this)">♡</span>
                 <img src="./Delicious Restaurant_files/burger.jpg" alt="Burger">
 
                 <h3>Burger</h3>
@@ -121,6 +210,23 @@
 
                 <span>10 €</span>
 
+                <div class="rating">
+
+    <div class="stars">
+        <span onclick="rateFood(this,1)" class="active">★</span>
+        <span onclick="rateFood(this,2)" class="active">★</span>
+        <span onclick="rateFood(this,3)" class="active">★</span>
+        <span onclick="rateFood(this,4)">★</span>
+        <span onclick="rateFood(this,5)">★</span>
+    </div>
+
+    <div class="review-text">
+        <span class="average">3.0</span>
+        <span class="dot">•</span>
+        <span class="review">33 Reviews</span>
+    </div>
+
+</div>
                 <button onclick="orderFood(&#39;burger&#39;,10)">
                     Order Now
                 </button>
@@ -128,68 +234,215 @@
             </div>
 
             <div class="card">
-
+              <span class="favorite" onclick="toggleFavorite(this)">♡</span>
                 <img src="./Delicious Restaurant_files/salad.jpg" alt="Salad">
-
                 <h3>Salad</h3>
-
                 <p>Healthy fresh salad.</p>
-
                 <span>8 €</span>
 
+                <div class="rating">
+
+    <div class="stars">
+        <span onclick="rateFood(this,1)">★</span>
+        <span onclick="rateFood(this,2)">★</span>
+        <span onclick="rateFood(this,3)">★</span>
+        <span onclick="rateFood(this,4)">★</span>
+        <span onclick="rateFood(this,5)">★</span>
+    </div>
+
+    <div class="review-text">
+        <span class="average">4.6</span>
+        <span class="dot">•</span>
+        <span class="review">24 Reviews</span>
+    </div>
+
+</div>
                 <button onclick="orderFood(&#39;salad&#39;,8)">
                     Order Now
                 </button>
 
             </div>
             <div class="card">
+               <span class="favorite" onclick="toggleFavorite(this)">♡</span>
                 <img src="./Delicious Restaurant_files/French-Fries.jpg" alt="French-Fries">
                 <h3>French-Fries</h3>
                 <p>Crispy golden French-Fries.</p>
 
                 <span>6 €</span>
+
+                <div class="rating">
+
+    <div class="stars">
+        <span onclick="rateFood(this,1)">★</span>
+        <span onclick="rateFood(this,2)">★</span>
+        <span onclick="rateFood(this,3)">★</span>
+        <span onclick="rateFood(this,4)">★</span>
+        <span onclick="rateFood(this,5)">★</span>
+    </div>
+
+    <div class="review-text">
+        <span class="average">4.8</span>
+        <span class="dot">•</span>
+        <span class="review">24 Reviews</span>
+    </div>
+
+</div>
                 <button onclick="orderFood(&#39;French-Fries&#39;,6)">Order Now</button>
             </div>
             <div class="card">
+               <span class="favorite" onclick="toggleFavorite(this)">♡</span>
                 <img src="./Delicious Restaurant_files/Hot-Dog.jpg" alt="Hot-Dog">
                 <h3>Hot-Dog</h3>
                 <p>Hot-Dog with fresh vegetables.</p>
                 <span>7 €</span>
+
+                <div class="rating">
+
+    <div class="stars">
+        <span onclick="rateFood(this,1)">★</span>
+        <span onclick="rateFood(this,2)">★</span>
+        <span onclick="rateFood(this,3)">★</span>
+        <span onclick="rateFood(this,4)">★</span>
+        <span onclick="rateFood(this,5)">★</span>
+    </div>
+
+    <div class="review-text">
+        <span class="average">4.4</span>
+        <span class="dot">•</span>
+        <span class="review">24 Reviews</span>
+    </div>
+
+</div>
                 <button onclick="orderFood(&#39;Hot-Dog&#39;,7)">order Now</button>
             </div> 
             <div class="card">
+               <span class="favorite" onclick="toggleFavorite(this)">♡</span>
                 <img src="./Delicious Restaurant_files/Pasta.jpg" alt="Pasta">
                 <h3>Pasta</h3>
                 <p>Italin Pasta with creamy sauce.</p>
                 <span>11 €</span>
+
+                <div class="rating">
+
+    <div class="stars">
+        <span onclick="rateFood(this,1)">★</span>
+        <span onclick="rateFood(this,2)">★</span>
+        <span onclick="rateFood(this,3)">★</span>
+        <span onclick="rateFood(this,4)">★</span>
+        <span onclick="rateFood(this,5)">★</span>
+    </div>
+
+    <div class="review-text">
+        <span class="average">4.4</span>
+        <span class="dot">•</span>
+        <span class="review">24 Reviews</span>
+    </div>
+
+</div>
                 <button onclick="orderFood(&#39;Pasta&#39;,11)">Order Now</button>
             </div>
             <div class="card">
+                <span class="favorite" onclick="toggleFavorite(this)">♡</span>
                 <img src="./Delicious Restaurant_files/Fried-Chicken.jpg" alt="Fried-Chicken">
                 <h3>Fried-Chicken</h3>
                 <p> Gulden Crispy Fried-Chicken,perfectly seasond and served hot with delicious flavor. </p>
                 <span>10 €</span>
+
+                <div class="rating">
+
+    <div class="stars">
+        <span onclick="rateFood(this,1)" class="active">★</span>
+        <span onclick="rateFood(this,2)" class="active">★</span>
+        <span onclick="rateFood(this,3)" class="active">★</span>
+        <span onclick="rateFood(this,4)" class="active">★</span>
+        <span onclick="rateFood(this,5)" class="active">★</span>
+    </div>
+
+    <div class="review-text">
+        <span class="average">4.8</span>
+        <span class="dot">•</span>
+        <span class="review">25 Reviews</span>
+    </div>
+
+</div>
                 <button onclick="orderFood(&#39;Fried-Chicken&#39;,10)">Order Now</button>
             </div>
             <div class="card">
+               <span class="favorite" onclick="toggleFavorite(this)">♡</span>
                 <img src="./Delicious Restaurant_files/Coca-Cola.jpg" alt="Coca-Cola">
                 <h3>Coca-Cola</h3>
                 <p>Enjoy an ice-Cola Pepsi with its refresching teste, the perfect match for any meal.</p>
                 <span>2,99€</span>
+
+                <div class="rating">
+
+    <div class="stars">
+        <span onclick="rateFood(this,1)" class="active">★</span>
+        <span onclick="rateFood(this,2)" class="active">★</span>
+        <span onclick="rateFood(this,3)" class="active">★</span>
+        <span onclick="rateFood(this,4)" class="active">★</span>
+        <span onclick="rateFood(this,5)" class="active">★</span>
+    </div>
+
+    <div class="review-text">
+        <span class="average">4.9</span>
+        <span class="dot">•</span>
+        <span class="review">25 Reviews</span>
+    </div>
+
+</div>
                 <button onclick="orderFood(&#39;Coca-Cola&#39;,2.99)">Order Now</button>
             </div>
              <div class="card">
+                <span class="favorite" onclick="toggleFavorite(this)">♡</span>
                 <img src="./Delicious Restaurant_files/Coffee.jpg" alt="Coffee">
                 <h3>Coffee</h3>
                 <p>Freshly brewed Coffee with brewed Coffee, full of rich flavor and aroma.</p>
                 <span> 3,50 €</span>
+
+                <div class="rating">
+
+    <div class="stars">
+        <span onclick="rateFood(this,1)" class="active">★</span>
+        <span onclick="rateFood(this,2)" class="active">★</span>
+        <span onclick="rateFood(this,3)" class="active">★</span>
+        <span onclick="rateFood(this,4)" class="active">★</span>
+        <span onclick="rateFood(this,5)" class="active">★</span>
+    </div>
+
+    <div class="review-text">
+        <span class="average">4.8</span>
+        <span class="dot">•</span>
+        <span class="review">25 Reviews</span>
+    </div>
+
+</div>
                 <button onclick="orderFood(&#39;Coffee&#39;,3.50)"> Order Now </button>
              </div>
              <div class="card"> 
+               <span class="favorite" onclick="toggleFavorite(this)">♡</span>
                 <img src="./Delicious Restaurant_files/Orange-Juice.jpg" alt="Orange-Juice">
                 <h3>Orange-Juice</h3>
                 <p>Fresh Orange-Juice made from ripe oranges, full of natural flavor and vitamin C.</p>
                 <span> 4,50 €</span>
+
+                <div class="rating">
+
+    <div class="stars">
+        <span onclick="rateFood(this,1)" class="active">★</span>
+        <span onclick="rateFood(this,2)" class="active">★</span>
+        <span onclick="rateFood(this,3)" class="active">★</span>
+        <span onclick="rateFood(this,4)" class="active">★</span>
+        <span onclick="rateFood(this,5)" class="active">★</span>
+    </div>
+
+    <div class="review-text">
+        <span class="average">4.7</span>
+        <span class="dot">•</span>
+        <span class="review">25 Reviews</span>
+    </div>
+
+</div>
                 <button onclick="orderFood(&#39;Orange-Juice&#39;,4.50)">Order Now</button>
              </div>
         </div>
@@ -199,6 +452,11 @@
                 <i class="fa-solid fa-xmark"></i>
             </span>
             <h4>🔥 Today's Special offers</h4>
+            <p class="countdown">
+                ⏰ Offer ends in:
+                <span id="timer">01:59:54</span>
+            </p>
+
             <div class="offer-card">
                 <img src="./Delicious Restaurant_files/pizza1.jpg" alt="pizza">
                 <h3>Pizza</h3>
@@ -216,6 +474,7 @@
             </div>
         </div>
     </section>
+
     <section class="about" id="about">
 
         <h2>About Us</h2>
@@ -275,6 +534,11 @@
     </footer>
 
     <script src="./Delicious Restaurant_files/script.js"></script>
+
+    <button id="topBtn" onclick="goTop()">
+        <i class="fa-solid fa-arrow-up"></i>
+        
+    </button>
 
 
 

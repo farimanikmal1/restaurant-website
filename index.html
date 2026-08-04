@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -14,29 +19,39 @@
 </head>
 
 <body>
-
-   <header>
+    <header>
 
     <!-- Logo -->
     <div class="logo">
-        <h1>
             <i class="fa-solid fa-utensils"></i>
-            Delicious Restaurant
-        </h1>
+            <h1>Delicious <span> Restaurant</span></h1>
     </div>
 
-    <!-- Hamburger Menu -->
-    <div class="menu-toggle" onclick="toggleMenu()">
-        <i class="fa-solid fa-bars"></i>
+    <!-- Desktop Navigation -->
+    <nav class="navbar">
+        <a href="#home" class="active">Home</a>
+        <a href="javascript:void(0)" onclick="openOffers()">Offers</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="Orders.html">Orders</a>
+    </nav>
+
+    <!-- Right Icons -->
+    <div class="header-right">
+
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+
+        <div class="cart-icon" onclick="openCart()">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="orderCount">0</span>
+        </div>
+
     </div>
 
-    <!-- Shopping Cart -->
-    <div class="cart-icon" onclick="openCart()">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span id="orderCount">0</span>
-    </div>
-
-    <!-- Cart Box -->
+    <!-- Cart -->
     <div class="order-box" id="cartbox">
 
         <span class="close-btn" onclick="closecart()">
@@ -52,7 +67,7 @@
         </p>
 
         <h5>
-            Total Price:
+            Total:
             <span id="totalprice">0</span> €
         </h5>
 
