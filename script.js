@@ -456,58 +456,52 @@ function toggleFavorite(element){
     //Customer Reviews
     //============================
 
-
     function rateFood(star,rating) {
+        let card = star.closest(".card");
+        let foodName = card.querySelector("h3").innerText;
+
+        if (localStorage.getItem(foodName + "-voted")){
+            alert("You have already rated this food!");
+            return;  }
         let stars = star.parentElement.children;
         for (let i = 0; i < stars.length; i++){
             if(i <rating){
-                stars[i].classList.add("active");
-            }
+                stars[i].classList.add("active");}
             else {
-                stars[i].classList.remove("active");
-            }
+                stars[i].classList.remove("active");}
         }
-        let card = star.closest(".card");
-        let average = card.querySelector(".average");
-        average.innerHTML = rating.toFixed(1);
-        let review = card.querySelector(".review");
-        let count = parseInt(review.innerText);
-        review.innerHTML = (count + 1)+ "Reviews";
 
-        let foodName = card.querySelector("h3").innerText
-        localStorage.setItem(foodName +"-rating" , rating);
-        localStorage.setItem(foodName + "-reviews" , count + 1 );
+      let average = card.querySelector(".average");
+let review = card.querySelector(".review");
 
+let oldAverage = parseFloat(average.innerText);
+let oldCount = parseInt(review.innerText);
+
+let newCount = oldCount + 1;
+let newAverage = ((oldAverage * oldCount) + rating) / newCount;
+
+average.innerText = newAverage.toFixed(1);
+review.innerText = newCount + " Reviews";
+
+localStorage.setItem(foodName + "-rating", newAverage);
+localStorage.setItem(foodName + "-reviews", newCount);
+        localStorage.setItem(foodName + "-voted" , "true");
     }
 
     window.onload = function () {
-
     let cards = document.querySelectorAll(".card");
 
     cards.forEach(function (card) {
-
         let foodName = card.querySelector("h3").innerText;
-
+        let alreadyRated =localStorage.getItem(foodName + "-voted");
         let savedRating = localStorage.getItem(foodName + "-rating");
-
         let savedReviews = localStorage.getItem(foodName + "-reviews");
 
         if (savedRating) {
-
             card.querySelector(".average").innerText = Number(savedRating).toFixed(1);
-
             card.querySelector(".review").innerText = savedReviews + " Reviews";
-
             let stars = card.querySelectorAll(".stars span");
-
             for (let i = 0; i < savedRating; i++) {
-
-                stars[i].classList.add("active");
-
-            }
-
+                stars[i].classList.add("active");}   
         }
-
-    });
-
-}
+    });}
