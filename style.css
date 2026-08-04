@@ -886,10 +886,19 @@ success Modal
 =========================== */
 
 .menu-toggle{
-    display: none;
-    font-size: 30px;
+    position: fixed;
+    top: 20px;
+    right: 95px;
+    width: 55px;
+    background: #f59e0b;
+    border-radius: 15px;
+justify-content: center;
+align-items: center;
+    display: flex;
+    font-size: 28px;
     color: white;
     cursor: pointer;
+    z-index: 3000;
 }
 
 @media (max-width:770px){
@@ -1325,4 +1334,53 @@ Reviews
 
 .review-text .review{
     font-weight: 500;
+}
+
+
+
+
+/* ==========================
+   Side Menu
+========================== */
+
+.side-menu{
+    position: fixed;
+    top: 0;
+    right: -340px;
+    width: 320px;
+    height: 100vh;
+    background: rgba(15,15,20,.97);
+    backdrop-filter: blur(12px);
+    border-left: 2px solid #f6b73c;
+    transition: .4s;
+    z-index: 9999;
+    padding: 30px;
+}
+
+.side-menu.active{
+    right: 0;
+}
+
+.side-menu a{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+    margin: 25px 0;
+    transition: .3s;
+}
+
+.side-menu a:hover{
+    color: #f6b73c;
+}
+
+.close-menu{
+    display: block;
+    text-align: right;
+    font-size: 32px;
+    color: #f6b73c;
+    cursor: pointer;
+    margin-bottom: 30px;
 }

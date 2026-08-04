@@ -278,8 +278,12 @@ function closeOffers() {
     document.getElementById("offersBox").classList.remove("show");
 }
 
-function togglemenu(){
-    document.querySelector("nav").classList.toggle("active");
+function toggleMenu(){
+   document.getElementById("sideMenu").classList.toggle("active");
+
+}
+function closeMenu(){
+    document.getElementById("sideMenu").classList.remove("active");
 }
 
 let hours = 2;
@@ -396,25 +400,34 @@ if (document.getElementById("totalPrice")) {
 function payByCard() {
     alert("Credit Card payment is not connected yet.");
 }
+function cashOnDelivery(){
+let cart =JSON.parse(localStorage.getItem("cart")) || [];
+let total = localStorage.getItem("totalPrice")|| "0";
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+orders.push({
+    items: cart,
+    total: total,
+    date: new Date().toLocaleString()
+});
+localStorage.setItem("orders", JSON.stringify(orders));
+
+alert ("Yor order has been placed successfully !");
+
+localStorage.removeItem("cart");
+localStorage.removeItem("totalPrice");
+window.location.href ="index.html";
+
+}
 
 function payByPayPal() {
     alert("PayPal payment is not connected yet.");
 }
-
 function payByApple() {
     alert("Apple Pay is not connected yet.");
 }
-
 function payByGoogle() {
     alert("Google Pay is not connected yet.");
-}
-
-function cashOnDelivery() {
-    alert("Your order has been placed successfully!");
-
-    localStorage.removeItem("cart");
-
-    window.location.href = "index.html";
 }
 
 
@@ -505,3 +518,17 @@ localStorage.setItem(foodName + "-reviews", newCount);
                 stars[i].classList.add("active");}   
         }
     });}
+
+
+    //=======================
+    //Sidebar
+    //=======================
+
+    function toggleMenu(){
+        document.getElementById("sidebar").classList.add("active");
+
+    }
+
+    function closeMenu(){
+        document.getElementById("sidebar").classList.remove("active");
+    }
