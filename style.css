@@ -1276,6 +1276,53 @@ input-row
 .input-row input{
     flex: 1;
 }
+/*==================
+Reviews
+================================*/
 
+.rating{
+    text-align: center;
+    margin: 8px 0;
+}
 
+.stars{
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    font-size: 22px;
+    margin-bottom: 3px;
+}
 
+.stars span{
+    cursor: pointer;
+    color: #d6d6d6;
+    transition: 0.2s;
+}
+
+.stars span:hover,
+.stars span.active{
+    color: #ffb400;
+}
+
+.review-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+    font-size: 14px;
+    color: #666;
+}
+
+.review-text .average{
+    font-weight: 600;
+    color: #333;
+}
+
+.review-text .dot{
+    color: #999;
+}
+
+.review-text .review{
+    font-weight: 500;
+}
