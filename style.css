@@ -150,7 +150,35 @@ section {
     flex-wrap: wrap;
 }
 
+.favorite{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 22px;
+    color: black;
+    box-shadow: 0 4px 10px rgba(0,0,0,.2);
+    cursor: pointer;
+    transition: .3s;
+    z-index: 10;
+
+}
+.favorite:hover{
+    transform: scale(1.15);
+}
+
+.favorite.active{
+    color: orange;
+}
+
 .card {
+    position: relative;
     width: 300px;
     background: white;
     border-radius: 20px;
@@ -1248,3 +1276,6 @@ input-row
 .input-row input{
     flex: 1;
 }
+
+
+

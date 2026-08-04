@@ -439,3 +439,15 @@ function backHome(){
     window.location.href ="index.html";
 
 }
+
+//===================
+// Favorite 
+//===================
+
+function toggleFavorite(element){
+    if (element.innerHTML ==="♡"){
+        element.innerHTML ="🖤";}
+        else{
+            element.innerHTML = "♡";
+        }
+    }
