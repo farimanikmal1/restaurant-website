@@ -451,3 +451,20 @@ function toggleFavorite(element){
             element.innerHTML = "♡";
         }
     }
+
+    //============================
+    //Customer Reviews
+    //============================
+
+
+    function rateFood(star,rating) {
+        let star = star.parentElement.children;
+        for (let i = 0; i < statusbar.length; i++){
+            if(i <rating){
+                stars[i].classList.add("active");
+            }
+            else {
+                stars[i].classList.remove("active");
+            }
+        }
+    }
