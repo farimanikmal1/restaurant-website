@@ -458,8 +458,8 @@ function toggleFavorite(element){
 
 
     function rateFood(star,rating) {
-        let star = star.parentElement.children;
-        for (let i = 0; i < statusbar.length; i++){
+        let stars = star.parentElement.children;
+        for (let i = 0; i < stars.length; i++){
             if(i <rating){
                 stars[i].classList.add("active");
             }
@@ -467,4 +467,47 @@ function toggleFavorite(element){
                 stars[i].classList.remove("active");
             }
         }
+        let card = star.closest(".card");
+        let average = card.querySelector(".average");
+        average.innerHTML = rating.toFixed(1);
+        let review = card.querySelector(".review");
+        let count = parseInt(review.innerText);
+        review.innerHTML = (count + 1)+ "Reviews";
+
+        let foodName = card.querySelector("h3").innerText
+        localStorage.setItem(foodName +"-rating" , rating);
+        localStorage.setItem(foodName + "-reviews" , count + 1 );
+
     }
+
+    window.onload = function () {
+
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(function (card) {
+
+        let foodName = card.querySelector("h3").innerText;
+
+        let savedRating = localStorage.getItem(foodName + "-rating");
+
+        let savedReviews = localStorage.getItem(foodName + "-reviews");
+
+        if (savedRating) {
+
+            card.querySelector(".average").innerText = Number(savedRating).toFixed(1);
+
+            card.querySelector(".review").innerText = savedReviews + " Reviews";
+
+            let stars = card.querySelectorAll(".stars span");
+
+            for (let i = 0; i < savedRating; i++) {
+
+                stars[i].classList.add("active");
+
+            }
+
+        }
+
+    });
+
+}
