@@ -938,41 +938,62 @@ Media Query
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+        padding: 0 20px;
     }
-   .menu-toggle{
+    .logo{
+        flex: 1;
+    }
+
+    .header-right{
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 46px;
-    height: 46px;
-    position: absolute;
-    top: 22px;
-    right: 80px;
-    font-size: 20px;
-    color: white;
-    background: #f6b73c;
-    border: 2px solid #f6b73c;
-    border-radius: 12px;
-    cursor: pointer;
-    z-index: 2000;
+    gap: 12px;
+}
+  .menu-toggle{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:52px;
+    height:52px;
+
+    position:absolute;
+    right:80px;
+    top: 46%;
+    transform:translateY(-50%);
+
+    padding:0;
+
+    background:#f6b73c;
+    border:2px solid #f6b73c;
+    border-radius:12px;
+
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    z-index:2000;
+}
+
+.menu-toggle i{
+    line-height:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .logo h1{
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .logo i{
     font-size: 24px;
 
 }
-.logo{ gap: 8px;
+.logo{ gap: 6px;
 }
 
-.header-right{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+
+
 .navbar{
     display: none !important;
 
@@ -1019,6 +1040,9 @@ Media Query
     }
 
     .cart-icon{
+        width: 52;
+        height: 52;
+        margin: 0;
         right: 15px;
         top: 15px;
         padding: 8px 12px;
