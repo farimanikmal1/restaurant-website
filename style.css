@@ -952,6 +952,16 @@ logo
     cursor: pointer;
     z-index: 2000;
 }
+
+.navbar{
+    display: none;
+
+}
+
+.sidebar{
+    display: block;
+}
+
     .hero{
         height: auto;
         padding: 80px 20px;
