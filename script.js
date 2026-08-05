@@ -190,12 +190,12 @@ function clearorders() {
 // Open / Close Cart
 // ==========================
 
-function opencart() {
+function openCart() {
 
     document.getElementById("cartbox").classList.add("show");
 }
 
-function closecart() {
+function closeCart() {
 
     document.getElementById("cartbox").classList.remove("show");
 }
