@@ -926,6 +926,10 @@ logo
     gap: 15px;
 }
 
+/*=============================
+Media Query
+=======================================*/
+
 @media (max-width:770px){
 
     header{
@@ -953,6 +957,22 @@ logo
     z-index: 2000;
 }
 
+.logo h1{
+    font-size: 24px;
+}
+
+.logo i{
+    font-size: 24px;
+
+}
+.logo{ gap: 8px;
+}
+
+.header-right{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 .navbar{
     display: none;
 
