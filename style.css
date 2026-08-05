@@ -974,7 +974,7 @@ Media Query
     gap: 10px;
 }
 .navbar{
-    display: none;
+    display: none !important;
 
 }
 
@@ -1475,7 +1475,6 @@ Reviews
 .navbar a:hover,
 .navbar a.active{
     color:white;
-    border-bottom: 3px solid transparent;
 }
 
 .navbar a::after{
