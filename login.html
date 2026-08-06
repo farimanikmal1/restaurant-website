@@ -9,8 +9,8 @@
     <title>Login</title>
     <link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet" href="https//cdnjs.cloudflare.com/ajax/libs/font-awsome/6.5.2/css/all.min.css">
-
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
     
@@ -18,34 +18,42 @@
 
         <div class="login-box">
             <h1>🍽 Restaurant</h1>
-            <h2>Welcom Back</h2>
-            <p>Plese login to your account</p>
+            <h2>Welcome Back</h2>
+            <p>Please login to your account</p>
             <form onsubmit="login(event)">
                 
-                <input="email" id="loginEmail" placeholder="Email Address" required>
+                <input
+                     type="email"
+                     id="loginEmail"
+                     placeholder="Email Address"
+                     required>
                 <input
                 type="password" id="loginPassword" placeholder="password"required>
-            <div class="login-options">
-                <label>
-                    <input type="checkbox">
-                    Remember me 
-                </label>
+          <div class="login-options">
 
-                <a href="#">Forgot password</a>
-                
-            </div>
+    <label class="remember">
 
-            <button type="submit"class"login-btn">
+        <input type="checkbox">
+
+        <span>Remember me</span>
+
+    </label>
+
+    <a href="forgot-password.html" class="forgot-link">
+        Forgot password
+    </a>
+
+</div>
+            <button type="submit"class="login-btn">
                 Login
             </button>
-            </iput>
             </form>
             <div class="login-divider">
                 <span>OR</span>
             </div>
             <button class="google-btn">
                 <i class="fa-brands fa-google"></i>
-                Contine with Google
+                Continue with Google
             </button>
             <p class="signup-text">
                  Dont have an account?

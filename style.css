@@ -1620,7 +1620,33 @@ Reviews
 /*=====================
 Login Page
 ==============================*/
+html,
+body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
 
+.login-page{
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#f5f8fc;
+    overflow:hidden;
+}
+
+.login-box{
+    width:420px;
+    max-width:90%;
+    padding:40px;
+    box-sizing:border-box;
+}
 .login-page{
 
     min-height: 100vh;
@@ -1643,4 +1669,154 @@ Login Page
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
+
+.login-box h1{
+
+    font-size: 48px;
+    color: #ff6b00;
+    text-align: center;
+    margin-bottom: 10px;
+
+
+}
+
+.login-box p{
+    text-align: center;
+    color: #777;
+    font-size: 17px;
+    margin-bottom: 30px;
+}
+
+.card-form,
+.login-box form{
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.login-box input{
+    width:100%;
+    padding:14px;
+    margin: top 5px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+    outline:none;
+}
+
+.login-box input:focus{
+    border-color:#ff6b00;
+}
+
+.login-btn{
+    width:100%;
+    padding:14px;
+    margin: top 0px;
+    border:none;
+    border-radius:10px;
+    background:#ff6b00;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+
+
+.login-btn:hover{
+    background:#e85f00;
+}
+
+
+
+.google-btn{
+    width:100%;
+    padding:14px;
+    margin-top:0px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    background:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.google-btn:hover{
+    background:#f7f7f7;
+}
+
+.login-options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:18px;
+    font-size:14px;
+}
+
+.login-options a{
+    color:#ff6b00;
+    text-decoration:none;
+}
+
+.login-options a:hover{
+    text-decoration:underline;
+}
+
+.login-divider{
+    text-align:center;
+    margin:20px 0;
+    font-weight:bold;
+    color:#888;
+}
+
+.signup-text{
+    text-align:center;
+    margin-top:5px;
+}
+
+.signup-text a{
+    color:#ff6b00;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+
+/* =========================
+   Login Options
+========================= */
+
+.login-options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:20px 0 30px;
+}
+
+.remember{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:15px;
+    color:#555;
+    cursor:pointer;
+}
+
+.remember input{
+    width:18px;
+    height:18px;
+    cursor:pointer;
+}
+
+.forgot-link{
+    font-size:15px;
+    color:#ff6b00;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.forgot-link:hover{
+    color:#ff8c2f;
 }
