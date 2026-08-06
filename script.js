@@ -6,20 +6,29 @@ let count = 0;
 let orders = [];
 let totalprice = 0;
 
-let savedCart = JSON.parse(localStorage.getItem("cart")) || [];
-orders = savedCart;
-count = orders.reduce((sum, item ,) => sum + item.quantity ,0);
+// ==========================
+// Load Saved Cart
+// ==========================
 
-updateCart();
+function loadCart() {
 
+    let savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    let savedCount = Number(localStorage.getItem("count")) || 0;
+
+    orders = savedCart;
+    count = savedCount;
+
+    if (count === 0) {
+        count = orders.reduce((sum, item) => sum + item.quantity, 0);
+    }
+
+}
 
 // ==========================
 // Add Food
 // ==========================
 
 function orderFood(foodName, price) {
-
-    count++;
 
     let item = orders.find(order => order.name === foodName);
 
@@ -40,11 +49,13 @@ function orderFood(foodName, price) {
             quantity: 1,
             image: imagePath
         });
+
     }
 
-    document.getElementById("orderCount").innerText = count;
+    count++;
 
     updateCart();
+
 }
 
 // ==========================
@@ -55,6 +66,8 @@ function updateCart() {
 
     const list = document.getElementById("orderList");
 
+    if (!list) return;
+
     list.innerHTML = "";
 
     totalprice = 0;
@@ -64,6 +77,7 @@ function updateCart() {
         totalprice += item.price * item.quantity;
 
         list.innerHTML += `
+
         <li class="cart-item">
 
             <img src="${item.image}" class="cart-img">
@@ -76,7 +90,7 @@ function updateCart() {
 
             <button onclick="increaseQuantity('${item.name}')">+</button>
 
-            <span>${item.price * item.quantity} €</span>
+            <span>${(item.price * item.quantity).toFixed(2)} €</span>
 
             <button class="delete-btn"
                 onclick="removeItem('${item.name}')">
@@ -85,17 +99,33 @@ function updateCart() {
 
             </button>
 
-        </li>`;
+        </li>
+
+        `;
+
     });
 
-    document.getElementById("totalprice").innerText = totalprice;
+    const orderCount = document.getElementById("orderCount");
+    if (orderCount) {
+        orderCount.innerText = count;
+    }
 
-    document.getElementById("emptyCart").style.display =
-        orders.length > 0 ? "none" : "block";
+    const totalElement = document.getElementById("totalprice");
+    if (totalElement) {
+        totalElement.innerText = totalprice.toFixed(2);
+    }
 
-    localStorage.setItem("orders", JSON.stringify(orders));
+    const emptyCart = document.getElementById("emptyCart");
+    if (emptyCart) {
+        emptyCart.style.display = orders.length === 0 ? "block" : "none";
+    }
+
+    localStorage.setItem("cart", JSON.stringify(orders));
     localStorage.setItem("count", count);
+    localStorage.setItem("totalPrice", totalprice);
+
 }
+
 // ==========================
 // Increase Quantity
 // ==========================
@@ -104,15 +134,13 @@ function increaseQuantity(foodName) {
 
     let item = orders.find(order => order.name === foodName);
 
-    if (item) {
+    if (!item) return;
 
-        item.quantity++;
-        count++;
+    item.quantity++;
+    count++;
 
-        updateCart();
+    updateCart();
 
-        document.getElementById("orderCount").innerText = count;
-    }
 }
 
 // ==========================
@@ -123,20 +151,23 @@ function decreaseQuantity(foodName) {
 
     let item = orders.find(order => order.name === foodName);
 
-    if (item) {
+    if (!item) return;
 
-        item.quantity--;
-        count--;
+    item.quantity--;
+    count--;
 
-        if (item.quantity === 0) {
+    if (item.quantity <= 0) {
 
-            orders = orders.filter(order => order.name !== foodName);
-        }
+        orders = orders.filter(order => order.name !== foodName);
 
-        updateCart();
-
-        document.getElementById("orderCount").innerText = count;
     }
+
+    if (count < 0) {
+        count = 0;
+    }
+
+    updateCart();
+
 }
 
 // ==========================
@@ -147,57 +178,96 @@ function removeItem(foodName) {
 
     let item = orders.find(order => order.name === foodName);
 
-    if (item) {
+    if (!item) return;
 
-        count -= item.quantity;
+    count -= item.quantity;
 
-        orders = orders.filter(order => order.name !== foodName);
+    orders = orders.filter(order => order.name !== foodName);
 
-        updateCart();
-
-        document.getElementById("orderCount").innerText = count;
-
-        if (count === 0) {
-
-            closecart();
-        }
+    if (count < 0) {
+        count = 0;
     }
+
+    updateCart();
+
+    if (count === 0) {
+        closeCart();
+    }
+
 }
 
 // ==========================
 // Clear Cart
 // ==========================
 
-function clearorders() {
+function clearOrders() {
 
     count = 0;
     orders = [];
     totalprice = 0;
 
-    document.getElementById("orderCount").innerText = "0";
-    document.getElementById("orderList").innerHTML = "";
-    document.getElementById("totalprice").innerText = "0";
-
-    localStorage.removeItem("orders");
+    localStorage.removeItem("cart");
     localStorage.removeItem("count");
+    localStorage.removeItem("totalPrice");
 
-    document.getElementById("cartbox").classList.remove("show");
+    const orderCount = document.getElementById("orderCount");
+    if (orderCount) {
+        orderCount.innerText = "0";
+    }
 
-    document.getElementById("emptyCart").style.display = "block";
+    const orderList = document.getElementById("orderList");
+    if (orderList) {
+        orderList.innerHTML = "";
+    }
+
+    const totalElement = document.getElementById("totalprice");
+    if (totalElement) {
+        totalElement.innerText = "0.00";
+    }
+
+    const emptyCart = document.getElementById("emptyCart");
+    if (emptyCart) {
+        emptyCart.style.display = "block";
+    }
+
+    closeCart();
+
+}
+
+// اگر در HTML هنوز نوشته‌ای:
+// onclick="clearorders()"
+// این تابع را نگه دار
+
+function clearorders() {
+    clearOrders();
 }
 
 // ==========================
-// Open / Close Cart
+// Open Cart
 // ==========================
 
 function openCart() {
 
-    document.getElementById("cartbox").classList.add("show");
+    const cartBox = document.getElementById("cartbox");
+
+    if (cartBox) {
+        cartBox.classList.add("show");
+    }
+
 }
+
+// ==========================
+// Close Cart
+// ==========================
 
 function closeCart() {
 
-    document.getElementById("cartbox").classList.remove("show");
+    const cartBox = document.getElementById("cartbox");
+
+    if (cartBox) {
+        cartBox.classList.remove("show");
+    }
+
 }
 
 // ==========================
@@ -206,315 +276,496 @@ function closeCart() {
 
 function checkout() {
 
-    if (count === 0) {
+    if (orders.length === 0) {
 
         alert("Your cart is empty.");
-
         return;
+
     }
 
-    localStorage.setItem("cart" , JSON.stringify(orders));
+    localStorage.setItem("cart", JSON.stringify(orders));
+    localStorage.setItem("count", count);
+    localStorage.setItem("totalPrice", totalprice);
+
     window.location.href = "checkout.html";
+
 }
 
 // ==========================
-// Load Saved Cart
+// Page Load
 // ==========================
 
-window.onload = function () {
+window.addEventListener("load", function () {
 
-    let savedOrders = localStorage.getItem("orders");
-    let savedCount = localStorage.getItem("count");
+    loadCart();
 
-    if (savedOrders) {
-        orders = JSON.parse(savedOrders);
+    if (document.getElementById("orderList")) {
+        updateCart();
     }
 
-    if (savedCount) {
-        count = Number(savedCount);
+    if (document.getElementById("ordersContainer")) {
+        loadOrders();
     }
 
-    document.getElementById("orderCount").innerText = count;
-
-    updateCart();
-};
+});
 
 // ==========================
 // Search Food
 // ==========================
 
-function searchfood() {
+function searchFood() {
 
-    let input = document
+    const input = document
         .getElementById("searchInput")
         .value
         .toLowerCase();
 
-    let cards = document.querySelectorAll(".card");
+    const cards = document.querySelectorAll(".card");
 
-    cards.forEach(function (card) {
+    cards.forEach(card => {
 
-        let foodName = card
+        const foodName = card
             .querySelector("h3")
             .innerText
             .toLowerCase();
 
         if (foodName.includes(input)) {
-
             card.style.display = "block";
-
         } else {
-
             card.style.display = "none";
         }
+
     });
+
 }
 
+// اگر در HTML هنوز searchfood() نوشته‌ای
+function searchfood() {
+    searchFood();
+}
+
+// ==========================
+// Offers
+// ==========================
+
 function openOffers() {
-    document.getElementById("offersBox").classList.add("show");
+
+    const offers = document.getElementById("offersBox");
+
+    if (offers) {
+        offers.classList.add("show");
+    }
+
 }
 
 function closeOffers() {
-    document.getElementById("offersBox").classList.remove("show");
+
+    const offers = document.getElementById("offersBox");
+
+    if (offers) {
+        offers.classList.remove("show");
+    }
+
 }
 
-function toggleMenu(){
-   document.getElementById("sideMenu").classList.toggle("active");
+// ==========================
+// Mobile Menu
+// ==========================
+
+function toggleMenu() {
+
+    const menu = document.getElementById("sideMenu");
+
+    if (menu) {
+        menu.classList.toggle("active");
+    }
 
 }
-function closeMenu(){
-    document.getElementById("sideMenu").classList.remove("active");
+
+function closeMenu() {
+
+    const menu = document.getElementById("sideMenu");
+
+    if (menu) {
+        menu.classList.remove("active");
+    }
+
 }
+
+// ==========================
+// Offer Timer
+// ==========================
 
 let hours = 2;
 let minutes = 0;
 let seconds = 0;
 
-function updateTimer(){
-let timer = document.getElementById("timer");
+function updateTimer() {
 
-timer.innerHTML =
-String(hours).padStart(2,"0") +":" +
-String(minutes).padStart(2,"0") + ":" +
-String(seconds).padStart(2,"0");
+    const timer = document.getElementById("timer");
+
+    if (!timer) return;
+
+    timer.innerHTML =
+        String(hours).padStart(2, "0") + ":" +
+        String(minutes).padStart(2, "0") + ":" +
+        String(seconds).padStart(2, "0");
+
 }
 
- let timerInterval =setInterval (function (){
-    if (seconds > 0) {
-        seconds--;
-    }
-    else{
-        if (minutes > 0){
-            minutes--;
-            seconds = 59;
+const timerInterval = setInterval(function () {
 
-        }
-        else {
-            if (hours > 0){
-                hours--;
-                minutes = 59;
-                seconds = 59;
-            }
-        }
+    if (!document.getElementById("timer")) return;
+
+    if (seconds > 0) {
+
+        seconds--;
+
+    } else if (minutes > 0) {
+
+        minutes--;
+        seconds = 59;
+
+    } else if (hours > 0) {
+
+        hours--;
+        minutes = 59;
+        seconds = 59;
+
     }
+
     updateTimer();
-    if (hours == 0 && minutes == 0 && seconds == 0){
+
+    if (hours === 0 && minutes === 0 && seconds === 0) {
+
         clearInterval(timerInterval);
 
-        timer.innerHTML ="Offer Expired";
-        document.querySelectorAll(".Offer-card button").disabled = true;
-    }
-},1000);
+        const timer = document.getElementById("timer");
 
-window.onscroll =function(){
-    scrollFuncation ();
+        if (timer) {
+            timer.innerHTML = "Offer Expired";
+        }
+
+    }
+
+}, 1000);
+
+// ==========================
+// Scroll To Top
+// ==========================
+
+window.onscroll = function () {
+
+    const topBtn = document.getElementById("topBtn");
+
+    if (!topBtn) return;
+
+    if (document.documentElement.scrollTop > 200 ||
+        document.body.scrollTop > 200) {
+
+        topBtn.style.display = "block";
+
+    } else {
+
+        topBtn.style.display = "none";
+
+    }
 
 };
 
-function scrollFuncation(){
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        document.getElementById("topBtn").style.display ="block";
-    }
-else {
-    document.getElementById("topBtn").style.display ="none";
-}
-}
-
 function goTop() {
+
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 
-
 }
 
-function submitOrder(event){
+// ==========================
+// Checkout Form
+// ==========================
+
+function submitOrder(event) {
+
     event.preventDefault();
+
+    if (orders.length === 0) {
+
+        alert("Your cart is empty.");
+        return;
+
+    }
+
     window.location.href = "payment.html";
 
 }
 
-function closeModal(){
-
-    document.getElementById("successModal").style.display ="none";
-    window.location.href = "index.html";
-
-}
-
-if (document.getElementById("totalPrice")) {
-
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    let total = 0;
-    let totalItems = 0;
-
-    cart.forEach(function(item) {
-        total += item.price * item.quantity;
-        totalItems += item.quantity;
-    });
-
-    if (document.getElementById("totalItems")) {
-        document.getElementById("totalItems").innerText = totalItems;
-    }
-
-    document.getElementById("totalPrice").innerText = total.toFixed(2) + " €";
-}
-
-
-   function checkout() {
-
-    if (count === 0) {
-        alert("Your cart is empty.");
-        return;
-    }
-
-    localStorage.setItem("cart", JSON.stringify(orders));
-
-    window.location.href = "checkout.html";
-}
-
-
-//======================
-//Payment 
-//========================
+// ==========================
+// Payment
+// ==========================
 
 function payByCard() {
     alert("Credit Card payment is not connected yet.");
-}
-function cashOnDelivery(){
-let cart =JSON.parse(localStorage.getItem("cart")) || [];
-let total = localStorage.getItem("totalPrice")|| "0";
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
-
-orders.push({
-    items: cart,
-    total: total,
-    date: new Date().toLocaleString()
-});
-localStorage.setItem("orders", JSON.stringify(orders));
-
-alert ("Yor order has been placed successfully !");
-
-localStorage.removeItem("cart");
-localStorage.removeItem("totalPrice");
-window.location.href ="index.html";
-
 }
 
 function payByPayPal() {
     alert("PayPal payment is not connected yet.");
 }
+
 function payByApple() {
     alert("Apple Pay is not connected yet.");
 }
+
 function payByGoogle() {
     alert("Google Pay is not connected yet.");
 }
 
+function cashOnDelivery() {
 
-//======================
-// card-payment
-//=======================
+    orders = JSON.parse(localStorage.getItem("cart")) || [];
 
+    let history = JSON.parse(localStorage.getItem("orderHistory")) || [];
 
+    // Calculate total
+    let total = orders.reduce((sum, item) => {
+        return sum + (item.price * item.quantity);
+    }, 0);
 
-function payNow(event) {
-    event.preventDefault();
+    history.push({
+        items: [...orders],
+        total: total.toFixed(2),
+        date: new Date().toLocaleString(),
+        status: "Completed"
+    });
 
-    document.getElementById("paymentSuccess") .style.display= "flex";
-
-}
-
-function backHome(){
+    localStorage.setItem("orderHistory", JSON.stringify(history));
 
     localStorage.removeItem("cart");
-    count = 0;
+    localStorage.removeItem("count");
+    localStorage.removeItem("totalPrice");
+
     orders = [];
-    window.location.href ="index.html";
+    count = 0;
+    totalprice = 0;
+
+    alert("Your order has been placed successfully!");
+
+    window.location.href = "Orders.html";
 
 }
 
-//===================
-// Favorite 
-//===================
+function payNow(event) {
 
-function toggleFavorite(element){
-    if (element.innerHTML ==="♡"){
-        element.innerHTML ="🖤";}
-        else{
-            element.innerHTML = "♡";
-        }
+    event.preventDefault();
+    orders = JSON.parse(localStorage.getItem("cart")) || [];
+count = Number(localStorage.getItem("count")) || 0;
+
+    let history = JSON.parse(localStorage.getItem("orderHistory")) || [];
+
+    // Calculate total before clearing the cart
+    let total = orders.reduce((sum, item) => {
+        return sum + (item.price * item.quantity);
+    }, 0);
+
+    // Create new order
+    let newOrder = {
+        items: [...orders],
+        total: total.toFixed(2),
+        date: new Date().toLocaleString(),
+        status: "Completed"
+    };
+
+    // Save order
+    history.push(newOrder);
+    localStorage.setItem("orderHistory", JSON.stringify(history));
+
+    // Clear cart
+    localStorage.removeItem("cart");
+    localStorage.removeItem("count");
+    localStorage.removeItem("totalPrice");
+
+    orders = [];
+    count = 0;
+    totalprice = 0;
+
+    // Show success message
+    const modal = document.getElementById("paymentSuccess");
+
+    if (modal) {
+        modal.style.display = "flex";
+    }
+}
+
+function backHome() {
+
+    window.location.href = "Orders.html";
+
+}
+
+
+// ==========================
+// Order History
+// ==========================
+
+function loadOrders() {
+
+    const container = document.getElementById("ordersContainer");
+
+    if (!container) return;
+
+    let history = JSON.parse(localStorage.getItem("orderHistory")) || [];
+
+    if (history.length === 0) {
+
+        container.innerHTML = `
+            <p class="empty-orders">
+                No orders yet.
+            </p>
+        `;
+
+        return;
     }
 
-    //============================
-    //Customer Reviews
-    //============================
+    container.innerHTML = "";
 
-    function rateFood(star,rating) {
-        let card = star.closest(".card");
-        let foodName = card.querySelector("h3").innerText;
+    history.forEach((order, index) => {
 
-        if (localStorage.getItem(foodName + "-voted")){
-            alert("You have already rated this food!");
-            return;  }
-        let stars = star.parentElement.children;
-        for (let i = 0; i < stars.length; i++){
-            if(i <rating){
-                stars[i].classList.add("active");}
-            else {
-                stars[i].classList.remove("active");}
-        }
+        let itemsHTML = "";
 
-      let average = card.querySelector(".average");
-let review = card.querySelector(".review");
+        order.items.forEach(item => {
 
-let oldAverage = parseFloat(average.innerText);
-let oldCount = parseInt(review.innerText);
+            itemsHTML += `
 
-let newCount = oldCount + 1;
-let newAverage = ((oldAverage * oldCount) + rating) / newCount;
+                <div class="history-item">
 
-average.innerText = newAverage.toFixed(1);
-review.innerText = newCount + " Reviews";
+                    <img src="${item.image}" class="history-img">
 
-localStorage.setItem(foodName + "-rating", newAverage);
-localStorage.setItem(foodName + "-reviews", newCount);
-        localStorage.setItem(foodName + "-voted" , "true");
+                    <div>
+
+                        <h4>${item.name}</h4>
+
+                        <p>Quantity: ${item.quantity}</p>
+
+                        <p>${Number(item.price).toFixed(2)} €</p>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+        container.innerHTML += `
+
+            <div class="history-card">
+
+                <h3>Order #${index + 1}</h3>
+
+                <p><strong>Date:</strong> ${order.date}</p>
+
+                <p><strong>Status:</strong> ${order.status || "Completed"} </p>
+
+                ${itemsHTML}
+
+                <h2>Total: ${Number(order.total).toFixed(2)} €</h2>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+// ==========================
+// Favorite
+// ==========================
+
+function toggleFavorite(element) {
+
+    element.classList.toggle("active");
+
+    if (element.classList.contains("active")) {
+        element.innerHTML = "🖤";
+    } else {
+        element.innerHTML = "♡";
     }
 
-    window.onload = function () {
-    let cards = document.querySelectorAll(".card");
+}
 
-    cards.forEach(function (card) {
-        let foodName = card.querySelector("h3").innerText;
-        let alreadyRated =localStorage.getItem(foodName + "-voted");
-        let savedRating = localStorage.getItem(foodName + "-rating");
-        let savedReviews = localStorage.getItem(foodName + "-reviews");
+// ==========================
+// Customer Reviews
+// ==========================
 
-        if (savedRating) {
-            card.querySelector(".average").innerText = Number(savedRating).toFixed(1);
-            card.querySelector(".review").innerText = savedReviews + " Reviews";
-            let stars = card.querySelectorAll(".stars span");
-            for (let i = 0; i < savedRating; i++) {
-                stars[i].classList.add("active");}   
+function rateFood(star, rating) {
+
+    const card = star.closest(".card");
+
+    const foodName = card.querySelector("h3").innerText;
+
+    if (localStorage.getItem(foodName + "-voted")) {
+
+        alert("You have already rated this food.");
+
+        return;
+
+    }
+
+    const stars = card.querySelectorAll(".stars span");
+
+    stars.forEach((item, index) => {
+
+        if (index < rating) {
+            item.classList.add("active");
+        } else {
+            item.classList.remove("active");
         }
-    });}
+
+    });
+
+    let average = card.querySelector(".average");
+    let reviews = card.querySelector(".review");
+
+    let oldAverage = parseFloat(average.innerText);
+    let oldReviews = parseInt(reviews.innerText);
+
+    let newReviews = oldReviews + 1;
+
+    let newAverage =
+        ((oldAverage * oldReviews) + rating) / newReviews;
+
+    average.innerText = newAverage.toFixed(1);
+    reviews.innerText = newReviews + " Reviews";
+
+    localStorage.setItem(foodName + "-rating", newAverage);
+    localStorage.setItem(foodName + "-reviews", newReviews);
+    localStorage.setItem(foodName + "-voted", "true");
+
+}
+
+// ==========================
+// Load Ratings
+// ==========================
+
+window.addEventListener("load", function () {
+
+    document.querySelectorAll(".card").forEach(card => {
+
+        const foodName = card.querySelector("h3").innerText;
+
+        const rating = localStorage.getItem(foodName + "-rating");
+        const reviews = localStorage.getItem(foodName + "-reviews");
+
+        if (rating) {
+
+            card.querySelector(".average").innerText =
+                Number(rating).toFixed(1);
+
+            card.querySelector(".review").innerText =
+                reviews + " Reviews";
+
+        }
+
+    });
+
+});
