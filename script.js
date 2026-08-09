@@ -769,36 +769,36 @@ window.addEventListener("load", function () {
     });
 
 });
-
 // ==========================
-// Login Page
+// Login
 // ==========================
 
 function login(event) {
 
     event.preventDefault();
 
-    const email = document.getElementById("loginEmail").value.trim();
-    const password = document.getElementById("loginPassword").value;
+    const email =
+        document.getElementById("loginEmail").value.trim();
 
-    if (email === "" || password === "") {
-
-        alert("Please enter your email and password.");
-
-        return;
-    }
+    const password =
+        document.getElementById("loginPassword").value;
 
     // Get saved account
-    const savedAccount = localStorage.getItem("restaurantAccount");
+    const savedAccount =
+        localStorage.getItem("restaurantAccount");
 
+    // Check account
     if (!savedAccount) {
 
-        alert("No account found. Please create an account first.");
+        alert("Account not found. Please create an account first.");
+
+        window.location.href = "signup.html";
 
         return;
     }
 
-    const account = JSON.parse(savedAccount);
+    const account =
+        JSON.parse(savedAccount);
 
     // Check email and password
     if (
@@ -806,9 +806,14 @@ function login(event) {
         password === account.password
     ) {
 
-        alert("Login successful! Welcome back, " + account.name + "!");
+        // IMPORTANT
+        // Save login status
+        localStorage.setItem("isLoggedIn", "true");
 
-        window.location.href = "index.html";
+        alert("Login successful! 🎉");
+
+        // Go to Profile
+        window.location.href = "profile.html";
 
     } else {
 
@@ -973,12 +978,71 @@ function signup(event) {
 
 }
 
-
 // ==========================
-// Load Profile Information
+// Profile
 // ==========================
 
 function loadProfile() {
+
+    const savedAccount =
+
+        localStorage.getItem("restaurantAccount");
+
+    const isLoggedIn =
+
+        localStorage.getItem("isLoggedIn");
+
+    // فقط در صفحه Profile بررسی شود
+
+    if (!savedAccount || isLoggedIn !== "true") {
+
+        alert("Please login first.");
+
+        window.location.href = "login.html";
+
+        return;
+
+    }
+
+    const account = JSON.parse(savedAccount);
+
+    const profileName =
+
+        document.getElementById("profileName");
+
+    const profileEmail =
+
+        document.getElementById("profileEmail");
+
+    if (profileName) {
+
+        profileName.innerText = account.name;
+
+    }
+
+    if (profileEmail) {
+
+        profileEmail.innerText = account.email;
+    }
+}
+
+
+// ==========================
+// Edit Profile
+// ==========================
+
+function editProfile() {
+
+    window.location.href = "edit-profile.html";
+
+}
+
+
+// ==========================
+// Load Edit Profile
+// ==========================
+
+function loadEditProfile() {
 
     const savedAccount =
         localStorage.getItem("restaurantAccount");
@@ -994,23 +1058,23 @@ function loadProfile() {
 
     const account = JSON.parse(savedAccount);
 
-    const profileName =
-        document.getElementById("profileName");
+    const nameInput =
+        document.getElementById("editName");
 
-    const profileEmail =
-        document.getElementById("profileEmail");
+    const emailInput =
+        document.getElementById("editEmail");
 
 
-    if (profileName) {
+    if (nameInput) {
 
-        profileName.innerText = account.name;
+        nameInput.value = account.name;
 
     }
 
 
-    if (profileEmail) {
+    if (emailInput) {
 
-        profileEmail.innerText = account.email;
+        emailInput.value = account.email;
 
     }
 
@@ -1018,10 +1082,81 @@ function loadProfile() {
 
 
 // ==========================
-// Load Profile On Page Open
+// Save Profile Changes
+// ==========================
+
+function saveProfile(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("editName").value.trim();
+
+    const email =
+        document.getElementById("editEmail").value.trim();
+
+
+    if (name === "" || email === "") {
+
+        alert("Please fill in all fields.");
+
+        return;
+    }
+
+
+    const savedAccount =
+        localStorage.getItem("restaurantAccount");
+
+
+    if (!savedAccount) {
+
+        alert("Account not found.");
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+
+    const account =
+        JSON.parse(savedAccount);
+
+
+    // Update account information
+
+    account.name = name;
+    account.email = email;
+
+
+    // Save updated account
+
+    localStorage.setItem(
+        "restaurantAccount",
+        JSON.stringify(account)
+    );
+
+
+    // Success message
+
+    alert(
+        "Your profile has been updated successfully! 🎉"
+    );
+
+
+    // Go back to Profile
+
+    window.location.href = "profile.html";
+
+}
+
+
+// ==========================
+// Load Profile / Edit Profile
 // ==========================
 
 window.addEventListener("load", function () {
+
+    // Profile page
 
     if (document.getElementById("profileName")) {
 
@@ -1029,10 +1164,42 @@ window.addEventListener("load", function () {
 
     }
 
+
+    // Edit Profile page
+
+    if (document.getElementById("editName")) {
+
+        loadEditProfile();
+
+    }
+
 });
 
 
 
+// ==========================
+// Logout
+// ==========================
+
+function logout() {
+
+    localStorage.removeItem("isLoggedIn");
+
+    alert("You have been logged out successfully.");
+
+    window.location.href = "login.html";
+
+}
+
+
+//========================
+// My Orders 
+//============================
+
+function openOrders(){
+    window.location.href ="Orders.html";
+    
+}
 
 
 

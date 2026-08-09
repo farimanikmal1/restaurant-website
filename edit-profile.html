@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Profile</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <section class="edit-profile-page">
+
+        <div class="edit-profile-box">
+
+            <!-- LOGO -->
+
+            <div class="profile-logo">
+
+                <img
+                    src="images/logo.jpg"
+                    alt="Restaurant Logo">
+
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h2>Edit Profile</h2>
+
+            <p class="edit-profile-subtitle">
+                Update your account information
+            </p>
+
+
+            <!-- FORM -->
+
+            <form onsubmit="saveProfile(event)">
+
+                <label for="editName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="editName"
+                    placeholder="Full Name"
+                    required>
+
+
+                <label for="editEmail">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="editEmail"
+                    placeholder="Email Address"
+                    required>
+
+
+                <button
+                    type="submit"
+                    class="save-profile-btn">
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Save Changes
+
+                </button>
+
+            </form>
+
+
+            <!-- CANCEL -->
+
+            <a
+                href="profile.html"
+                class="back-profile">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Profile
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
