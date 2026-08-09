@@ -770,31 +770,271 @@ window.addEventListener("load", function () {
 
 });
 
-//================
+// ==========================
 // Login Page
-//======================
+// ==========================
 
-function login (event) {
+function login(event) {
+
     event.preventDefault();
 
-    const email = document.getElementById("login Email") .value.timer();
-    const password= document.getElementById("loginPassword").value;
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
 
-    if (email === "" || password === ""){
+    if (email === "" || password === "") {
+
         alert("Please enter your email and password.");
+
         return;
     }
 
-    // Demo Login 
+    // Get saved account
+    const savedAccount = localStorage.getItem("restaurantAccount");
 
-    if (email ==="test@gmail.com" && password === "123456"){
-        alert ("Login successfull!");
+    if (!savedAccount) {
 
-        window.location.href = "profile.html";
+        alert("No account found. Please create an account first.");
+
+        return;
+    }
+
+    const account = JSON.parse(savedAccount);
+
+    // Check email and password
+    if (
+        email === account.email &&
+        password === account.password
+    ) {
+
+        alert("Login successful! Welcome back, " + account.name + "!");
+
+        window.location.href = "index.html";
+
+    } else {
+
+        alert("Invalid email or password.");
 
     }
 
-    else{
-        alert("Invalid email of password.");
+}
+
+// ==========================
+// Create Account
+// ==========================
+
+function signup(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("signupName").value.trim();
+    const email = document.getElementById("signupEmail").value.trim();
+    const password = document.getElementById("signupPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+
+    // Check empty fields
+
+    if (
+        name === "" ||
+        email === "" ||
+        password === "" ||
+        confirmPassword === ""
+    ) {
+
+        alert("Please fill in all fields.");
+
+        return;
+    }
+
+
+    // Check password
+
+    if (password !== confirmPassword) {
+
+        alert("Passwords do not match.");
+
+        return;
+    }
+
+
+    // Create account object
+
+    const account = {
+
+        name: name,
+
+        email: email,
+
+        password: password
+
+    };
+
+
+    // Save account
+
+    localStorage.setItem(
+        "restaurantAccount",
+        JSON.stringify(account)
+    );
+
+
+    // Success message
+
+    alert(
+        "Your account has been created successfully! 🎉"
+    );
+
+
+    // Go to Login page
+
+    window.location.href = "login.html";
+
+}
+
+//====================
+//Open Profile
+//============================
+
+function openProfile(){
+    const savedUser = localStorage.getItem("loggedInUser");
+    if (! savedUser) {
+
+        alert ("Please login first.");
+        window.location.href = "profile.html";
     }
 }
+
+
+// ==========================
+// Sign Up / Create Account
+// ==========================
+
+function signup(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("signupName").value.trim();
+    const email = document.getElementById("signupEmail").value.trim();
+    const password = document.getElementById("signupPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+
+    // Check password
+    if (password !== confirmPassword) {
+
+        alert("Passwords do not match.");
+
+        return;
+    }
+
+
+    // Check if account already exists
+
+    const existingUser =
+        JSON.parse(localStorage.getItem("userAccount"));
+
+    if (existingUser && existingUser.email === email) {
+
+        alert("An account with this email already exists.");
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+
+    // Create user account
+
+    const userAccount = {
+
+        name: name,
+        email: email,
+        password: password
+
+    };
+
+
+    // Save account
+
+    localStorage.setItem(
+        "userAccount",
+        JSON.stringify(userAccount)
+    );
+
+
+    // Success message
+
+    alert("Your account has been created successfully!");
+
+
+    // Go to Login
+
+    window.location.href = "login.html";
+
+}
+
+
+// ==========================
+// Load Profile Information
+// ==========================
+
+function loadProfile() {
+
+    const savedAccount =
+        localStorage.getItem("restaurantAccount");
+
+    if (!savedAccount) {
+
+        alert("Please create an account first.");
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+    const account = JSON.parse(savedAccount);
+
+    const profileName =
+        document.getElementById("profileName");
+
+    const profileEmail =
+        document.getElementById("profileEmail");
+
+
+    if (profileName) {
+
+        profileName.innerText = account.name;
+
+    }
+
+
+    if (profileEmail) {
+
+        profileEmail.innerText = account.email;
+
+    }
+
+}
+
+
+// ==========================
+// Load Profile On Page Open
+// ==========================
+
+window.addEventListener("load", function () {
+
+    if (document.getElementById("profileName")) {
+
+        loadProfile();
+
+    }
+
+});
+
+
+
+
+
+
+
+
