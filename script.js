@@ -769,3 +769,32 @@ window.addEventListener("load", function () {
     });
 
 });
+
+//================
+// Login Page
+//======================
+
+function login (event) {
+    event.preventDefault();
+
+    const email = document.getElementById("login Email") .value.timer();
+    const password= document.getElementById("loginPassword").value;
+
+    if (email === "" || password === ""){
+        alert("Please enter your email and password.");
+        return;
+    }
+
+    // Demo Login 
+
+    if (email ==="test@gmail.com" && password === "123456"){
+        alert ("Login successfull!");
+
+        window.location.href = "profile.html";
+
+    }
+
+    else{
+        alert("Invalid email of password.");
+    }
+}
