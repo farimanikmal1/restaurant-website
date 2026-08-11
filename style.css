@@ -2728,3 +2728,303 @@ Reviews
 }
 
 
+/* ==========================
+   Change Password Page
+========================== */
+
+.change-password-page {
+    min-height: 100vh;
+    background: #fffaf5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.change-password-box {
+    width: 100%;
+    max-width: 620px;
+    background: white;
+    padding: 40px 45px;
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+}
+
+/* Logo */
+
+.change-password-box .profile-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.change-password-box .profile-logo img {
+    width: 120px;
+    height: auto;
+}
+
+/* Title */
+
+.change-password-box h2 {
+    text-align: center;
+    font-size: 32px;
+    color: #263238;
+    margin: 10px 0 8px;
+}
+
+.change-password-subtitle {
+    text-align: center;
+    color: #777;
+    font-size: 16px;
+    margin-bottom: 35px;
+}
+
+/* Form */
+
+.change-password-box form {
+    width: 100%;
+}
+
+.change-password-box label {
+    display: block;
+    font-weight: 600;
+    color: #263238;
+    margin: 18px 0 8px;
+    font-size: 15px;
+}
+
+.change-password-box input {
+    width: 100%;
+    height: 52px;
+    padding: 0 16px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+    background: #fff;
+    transition: 0.3s;
+}
+
+.change-password-box input:focus {
+    border-color: #e8752b;
+    box-shadow: 0 0 0 3px rgba(232, 117, 43, 0.12);
+}
+
+/* Change Password Button */
+
+.change-password-box .save-profile-btn {
+    width: 100%;
+    height: 54px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 10px;
+    background: #e8752b;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.change-password-box .save-profile-btn:hover {
+    background: #d9631c;
+    transform: translateY(-1px);
+}
+
+/* Back to Profile */
+
+.change-password-box .back-profile {
+    display: block;
+    width: fit-content;
+    margin: 25px auto 0;
+    color: #e8752b;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.change-password-box .back-profile:hover {
+    text-decoration: underline;
+}
+
+
+/* ==========================
+   Mobile
+========================== */
+
+@media (max-width: 600px) {
+
+    .change-password-page {
+        padding: 25px 15px;
+        align-items: flex-start;
+    }
+
+    .change-password-box {
+        padding: 30px 22px;
+        margin-top: 20px;
+    }
+
+    .change-password-box h2 {
+        font-size: 27px;
+    }
+
+    .change-password-subtitle {
+        font-size: 14px;
+    }
+
+}
+
+
+/* ==========================
+   Forgot Password Page
+========================== */
+
+.forgot-password-page {
+    min-height: 100vh;
+    background: #fffaf5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.forgot-password-box {
+    width: 100%;
+    max-width: 620px;
+    background: #ffffff;
+    padding: 40px 45px;
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+}
+
+/* Logo */
+
+.forgot-password-box .profile-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.forgot-password-box .profile-logo img {
+    width: 120px;
+    height: auto;
+}
+
+/* Title */
+
+.forgot-password-box h2 {
+    text-align: center;
+    font-size: 32px;
+    color: #263238;
+    margin: 10px 0 8px;
+}
+
+.forgot-password-subtitle {
+    text-align: center;
+    color: #777;
+    font-size: 16px;
+    margin: 0 0 35px;
+}
+
+/* Form */
+
+.forgot-password-box form {
+    width: 100%;
+    display: block;
+}
+
+.forgot-password-box label {
+    display: block;
+    width: 100%;
+    margin: 0 0 8px;
+    color: #263238;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.forgot-password-box input {
+    display: block;
+    width: 100%;
+    height: 52px;
+    padding: 0 16px;
+    margin: 0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    color: #333;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.forgot-password-box input:focus {
+    border-color: #e8752b;
+    box-shadow: 0 0 0 3px rgba(232, 117, 43, 0.12);
+}
+
+/* Button */
+
+.forgot-password-box .save-profile-btn {
+    display: block;
+    width: 100%;
+    height: 54px;
+    margin-top: 28px;
+    border: none;
+    border-radius: 10px;
+    background: #e8752b;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.forgot-password-box .save-profile-btn:hover {
+    background: #d9631c;
+    transform: translateY(-1px);
+}
+
+/* Back to Login */
+
+.forgot-password-box .back-profile {
+    display: block;
+    width: fit-content;
+    margin: 25px auto 0;
+    color: #e8752b;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.forgot-password-box .back-profile:hover {
+    text-decoration: underline;
+}
+
+
+/* ==========================
+   Mobile
+========================== */
+
+@media (max-width: 600px) {
+
+    .forgot-password-page {
+        padding: 25px 15px;
+        align-items: flex-start;
+    }
+
+    .forgot-password-box {
+        padding: 30px 22px;
+        margin-top: 20px;
+    }
+
+    .forgot-password-box h2 {
+        font-size: 27px;
+    }
+
+    .forgot-password-subtitle {
+        font-size: 14px;
+    }
+
+}

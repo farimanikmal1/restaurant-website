@@ -678,20 +678,62 @@ function loadOrders() {
 }
 
 // ==========================
-// Favorite
+// Favorites
 // ==========================
 
 function toggleFavorite(element) {
 
-    element.classList.toggle("active");
+    const card = element.closest(".card");
 
-    if (element.classList.contains("active")) {
+    if (!card) return;
+
+    const name =
+        card.querySelector("h3").innerText;
+
+    const image =
+        card.querySelector("img").getAttribute("src");
+
+    let favorites =
+        JSON.parse(localStorage.getItem("favorites")) || [];
+
+
+    const existingIndex =
+        favorites.findIndex(item => item.name === name);
+
+
+    if (existingIndex === -1) {
+
+        // Add favorite
+
+        favorites.push({
+            name: name,
+            image: image
+        });
+
+        element.classList.add("active");
+
         element.innerHTML = "🖤";
+
     } else {
+
+        // Remove favorite
+
+        favorites.splice(existingIndex, 1);
+
+        element.classList.remove("active");
+
         element.innerHTML = "♡";
+
     }
 
+
+    localStorage.setItem(
+        "favorites",
+        JSON.stringify(favorites)
+    );
+
 }
+
 
 // ==========================
 // Customer Reviews
@@ -1037,6 +1079,111 @@ function editProfile() {
 
 }
 
+// ==========================
+// Change Password Page
+// ==========================
+
+function changePassword() {
+
+    window.location.href = "change-password.html";
+
+}
+
+
+// ==========================
+// Save New Password
+// ==========================
+
+function changePasswordSubmit(event) {
+
+    event.preventDefault();
+
+
+    const currentPassword =
+        document.getElementById("currentPassword").value;
+
+    const newPassword =
+        document.getElementById("newPassword").value;
+
+    const confirmNewPassword =
+        document.getElementById("confirmNewPassword").value;
+
+
+    // Get saved account
+
+    const savedAccount =
+        localStorage.getItem("restaurantAccount");
+
+
+    if (!savedAccount) {
+
+        alert("Account not found.");
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+
+    const account =
+        JSON.parse(savedAccount);
+
+
+    // Check current password
+
+    if (currentPassword !== account.password) {
+
+        alert("Current password is incorrect.");
+
+        return;
+    }
+
+
+    // Check new password
+
+    if (newPassword !== confirmNewPassword) {
+
+        alert("New passwords do not match.");
+
+        return;
+    }
+
+
+    // Check password length
+
+    if (newPassword.length < 6) {
+
+        alert("Password must be at least 6 characters.");
+
+        return;
+    }
+
+
+    // Save new password
+
+    account.password = newPassword;
+
+
+    localStorage.setItem(
+        "restaurantAccount",
+        JSON.stringify(account)
+    );
+
+
+    // Success message
+
+    alert(
+        "Your password has been changed successfully! 🎉"
+    );
+
+
+    // Go back to Login
+
+    localStorage.removeItem("isLoggedIn");
+
+    window.location.href = "login.html";
+
+}
 
 // ==========================
 // Load Edit Profile
@@ -1202,6 +1349,205 @@ function openOrders(){
 }
 
 
+//======================
+// Favorites
+//=============================
+
+function openFavorites (){
+
+    window.location.href= "favorites.html";
+
+}
 
 
+// ==========================
+// Load Favorites
+// ==========================
 
+function loadFavorites() {
+
+    const container =
+        document.getElementById("favoritesContainer");
+
+    if (!container) return;
+
+
+    const favorites =
+        JSON.parse(localStorage.getItem("favorites")) || [];
+
+
+    if (favorites.length === 0) {
+
+        container.innerHTML = `
+            <p class="empty-favorites">
+                No favorite food yet.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    favorites.forEach(item => {
+
+        container.innerHTML += `
+
+            <div class="favorite-card">
+
+                <img
+                    src="${item.image}"
+                    alt="${item.name}">
+
+                <div class="favorite-info">
+
+                    <h3>${item.name}</h3>
+
+                    <button
+                        onclick="removeFavorite('${item.name}')">
+
+                        <i class="fa-solid fa-heart"></i>
+
+                        Remove
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+// ==========================
+// Remove Favorite
+// ==========================
+
+function removeFavorite(foodName) {
+
+    let favorites =
+        JSON.parse(localStorage.getItem("favorites")) || [];
+
+
+    favorites =
+        favorites.filter(item => item.name !== foodName);
+
+
+    localStorage.setItem(
+        "favorites",
+        JSON.stringify(favorites)
+    );
+
+
+    loadFavorites();
+
+}
+
+// ==========================
+// Load Favorites Page
+// ==========================
+
+window.addEventListener("load", function () {
+
+    if (document.getElementById("favoritesContainer")) {
+
+        loadFavorites();
+
+    }
+
+});
+
+// ==========================
+// Forgot Password
+// ==========================
+
+function forgotPassword(event) {
+
+    event.preventDefault();
+
+    const email =
+        document.getElementById("forgotEmail").value.trim();
+
+    const savedAccount =
+        localStorage.getItem("restaurantAccount");
+
+
+    // Check account
+
+    if (!savedAccount) {
+
+        alert("No account was found. Please create an account first.");
+
+        window.location.href = "signup.html";
+
+        return;
+    }
+
+
+    const account =
+        JSON.parse(savedAccount);
+
+
+    // Check email
+
+    if (email !== account.email) {
+
+        alert("This email address is not registered.");
+
+        return;
+    }
+
+
+    // Ask for new password
+
+    const newPassword =
+        prompt("Enter your new password:");
+
+
+    if (!newPassword) {
+
+        return;
+    }
+
+
+    // Password length
+
+    if (newPassword.length < 6) {
+
+        alert("Password must be at least 6 characters.");
+
+        return;
+    }
+
+
+    // Save new password
+
+    account.password = newPassword;
+
+
+    localStorage.setItem(
+        "restaurantAccount",
+        JSON.stringify(account)
+    );
+
+
+    // Remove login status
+
+    localStorage.removeItem("isLoggedIn");
+
+
+    alert(
+        "Your password has been reset successfully! 🎉"
+    );
+
+
+    // Go to Login
+
+    window.location.href = "login.html";
+
+}
