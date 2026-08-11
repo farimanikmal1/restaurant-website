@@ -1551,3 +1551,53 @@ function forgotPassword(event) {
     window.location.href = "login.html";
 
 }
+
+// ==========================
+// Contact Us
+// ==========================
+
+function sendMessage(event) {
+
+    event.preventDefault();
+
+    const form = event.target;
+
+    const name = form.querySelector(
+        'input[type="text"]'
+    ).value.trim();
+
+    const email = form.querySelector(
+        'input[type="email"]'
+    ).value.trim();
+
+    const message = form.querySelector(
+        "textarea"
+    ).value.trim();
+
+
+    // Check fields
+
+    if (
+        name === "" ||
+        email === "" ||
+        message === ""
+    ) {
+
+        alert("Please fill in all fields.");
+
+        return;
+    }
+
+
+    // Success message
+
+    alert(
+        "Your message has been sent successfully! 🎉"
+    );
+
+
+    // Clear form
+
+    form.reset();
+
+}
