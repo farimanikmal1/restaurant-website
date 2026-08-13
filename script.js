@@ -1570,17 +1570,9 @@ function sendMessage(event) {
         'input[type="email"]'
     ).value.trim();
 
-    const message = form.querySelector(
-        "textarea"
-    ).value.trim();
-
-
-    // Check fields
-
-    if (
-        name === "" ||
-        email === "" ||
-        message === ""
+    co   isNaN(price) ||
+        image === "" ||
+        description === ""
     ) {
 
         alert("Please fill in all fields.");
@@ -1589,15 +1581,338 @@ function sendMessage(event) {
     }
 
 
-    // Success message
+    // Get existing foods
 
-    alert(
-        "Your message has been sent successfully! 🎉"
+    let foods =
+        JSON.parse(
+            localStorage.getItem("adminFoods")
+        ) || [];
+
+
+    // Create food
+
+    const food = {
+
+        id: Date.now(),
+
+        name: name,
+
+        price: price,
+
+        image: image,
+
+        description: description
+
+    };
+
+
+    // Add food
+
+    foods.push(food);
+
+
+    // Save foods
+
+    localStorage.setItem(
+        "adminFoods",
+        JSON.stringify(foods)
     );
 
 
     // Clear form
 
-    form.reset();
+    document.getElementById("foodName").value = "";
+
+    document.getElementById("foodPrice").value = "";
+
+    document.getElementById("foodImage").value = "";
+
+    document.getElementById("foodDescription").value = "";
+
+
+    // Refresh list
+
+    loadAdminFoods();
+
+
+    alert("Food has been added successfully! 🎉");
 
 }
+
+
+// ==========================
+// Load Admin Foods
+// ==========================
+
+function loadAdminFoods() {
+
+    const container =
+        document.getElementById("adminFoodContainer");
+
+    if (!container) return;
+
+
+    const foods =
+        JSON.parse(
+            localStorage.getItem("adminFoods")
+        ) || [];
+
+
+    if (foods.length === 0) {
+
+        container.innerHTML = `
+            <p class="empty-admin-foods">
+                No food items yet.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    foods.forEach(food => {
+
+        container.innerHTML += `
+
+            <div class="admin-food-card">
+
+                <img
+                    src="${food.image}"
+                    alt="${food.name}">
+
+                <div class="admin-food-info">
+
+                    <h3>${food.name}</h3>
+
+                    <p>
+                        ${food.description}
+                    </p>
+
+                    <span class="admin-food-price">
+                        ${food.price.toFixed(2)} €
+                    </span>
+
+                    <div class="admin-food-actions">
+
+                        <button
+                            class="edit-food-btn"
+                            onclick="editFood(${food.id})">
+
+                            <i class="fa-solid fa-pen"></i>
+                            Edit
+
+                        </button>
+
+                        <button
+                            class="delete-food-btn"
+                            onclick="deleteFood(${food.id})">
+
+                            <i class="fa-solid fa-trash"></i>
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+
+// ==========================
+// Admin Menu
+// ==========================
+
+function addFood(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("foodName").value.trim();
+
+    const price =
+        parseFloat(
+            document.getElementById("foodPrice").value
+        );
+
+    const image =
+        document.getElementById("foodImage").value.trim();
+
+    const description =
+        document.getElementById("foodDescription").value.trim();
+
+
+    if (
+        name === "" ||
+        isNaN(price) ||
+        image === "" ||
+        description === ""
+    ) {
+
+        alert("Please fill in all fields.");
+
+        return;
+    }
+
+
+    let foods =
+        JSON.parse(
+            localStorage.getItem("adminFoods")
+        ) || [];
+
+
+    const food = {
+
+        id: Date.now(),
+
+        name: name,
+
+        price: price,
+
+        image: image,
+
+        description: description
+
+    };
+
+
+    foods.push(food);
+
+
+    localStorage.setItem(
+        "adminFoods",
+        JSON.stringify(foods)
+    );
+
+
+    document.getElementById("addFoodForm").reset();
+
+
+    loadAdminFoods();
+
+
+    alert("Food has been added successfully! 🎉");
+
+}
+
+
+// ==========================
+// Load Admin Foods
+// ==========================
+
+function loadAdminFoods() {
+
+    const container =
+        document.getElementById("adminFoodContainer");
+
+    if (!container) return;
+
+
+    const foods =
+        JSON.parse(
+            localStorage.getItem("adminFoods")
+        ) || [];
+
+
+    if (foods.length === 0) {
+
+        container.innerHTML = `
+            <p class="empty-admin-foods">
+                No food items yet.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    foods.forEach(function(food) {
+
+        container.innerHTML += `
+
+            <div class="admin-food-card">
+
+                <img
+                    src="${food.image}"
+                    alt="${food.name}">
+
+                <div class="admin-food-info">
+
+                    <h3>${food.name}</h3>
+
+                    <p>
+                        ${food.description}
+                    </p>
+
+                    <span class="admin-food-price">
+                        ${Number(food.price).toFixed(2)} €
+                    </span>
+
+                    <div class="admin-food-actions">
+
+                        <button
+                            class="edit-food-btn"
+                            onclick="editFood(${food.id})">
+
+                            <i class="fa-solid fa-pen"></i>
+                            Edit
+
+                        </button>
+
+                        <button
+                            class="delete-food-btn"
+                            onclick="deleteFood(${food.id})">
+
+                            <i class="fa-solid fa-trash"></i>
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+// ==========================
+// Admin Menu Form
+// ==========================
+
+window.addEventListener("load", function() {
+
+    const form =
+        document.getElementById("addFoodForm");
+
+    if (form) {
+
+        form.addEventListener(
+            "submit",
+            addFood
+        );
+
+    }
+
+
+    loadAdminFoods();
+
+});

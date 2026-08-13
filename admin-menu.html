@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Menu</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <section class="admin-menu-page">
+
+        <div class="admin-menu-box">
+
+            <!-- HEADER -->
+
+            <div class="admin-menu-header">
+
+                <div>
+
+                    <h1>
+                        <i class="fa-solid fa-utensils"></i>
+                        Manage Menu
+                    </h1>
+
+                    <p>
+                        Add and manage restaurant food
+                    </p>
+
+                </div>
+
+                <a
+                    href="admin.html"
+                    class="back-admin">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Admin Panel
+
+                </a>
+
+            </div>
+
+
+            <!-- ADD FOOD -->
+
+            <div class="add-food-box">
+
+                <h2>Add New Food</h2>
+
+                <form onsubmit="addFood">
+
+                    <input
+                        type="text"
+                        id="foodName"
+                        placeholder="Food Name"
+                        required>
+
+                    <input
+                        type="number"
+                        id="foodPrice"
+                        placeholder="Price (€)"
+                        step="0.01"
+                        min="0"
+                        required>
+
+                    <input
+                        type="text"
+                        id="foodImage"
+                        placeholder="Image path e.g. images/pizza.jpg"
+                        required>
+
+                    <textarea
+                        id="foodDescription"
+                        placeholder="Food description"
+                        required></textarea>
+
+                    <button
+                        type="submit"
+                        class="add-food-btn">
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Add Food
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- FOOD LIST -->
+
+            <div class="admin-food-list">
+
+                <h2>Food Menu</h2>
+
+                <div id="adminFoodContainer">
+
+                    <!-- Foods will appear here -->
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+

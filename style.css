@@ -3028,3 +3028,397 @@ Reviews
     }
 
 }
+
+
+/* ==========================
+   ADMIN PANEL
+========================== */
+
+.admin-page {
+    min-height: 100vh;
+    background: #fffaf5;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.admin-box {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    background: white;
+    padding: 35px;
+    border-radius: 24px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+    box-sizing: border-box;
+}
+
+/* Header */
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.admin-header h1 {
+    margin: 0 0 6px;
+    color: #263238;
+    font-size: 30px;
+}
+
+.admin-header h1 i {
+    color: #e8752b;
+}
+
+.admin-header p {
+    margin: 0;
+    color: #777;
+}
+
+
+/* Logout */
+
+.admin-logout {
+    border: none;
+    background: #f3f4f6;
+    color: #374151;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.admin-logout:hover {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+
+/* Dashboard Cards */
+
+.admin-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.admin-card {
+    border: 1px solid #eee;
+    border-radius: 18px;
+    padding: 28px 22px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.admin-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.admin-card > i {
+    font-size: 34px;
+    color: #e8752b;
+    margin-bottom: 15px;
+}
+
+.admin-card h3 {
+    margin: 5px 0;
+    color: #263238;
+    font-size: 22px;
+}
+
+.admin-card p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.admin-card button {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 9px;
+    background: #e8752b;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.admin-card button:hover {
+    background: #d9631c;
+}
+
+
+/* Back Home */
+
+.admin-home {
+    display: block;
+    width: fit-content;
+    margin: 35px auto 0;
+    color: #e8752b;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.admin-home:hover {
+    text-decoration: underline;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .admin-page {
+        padding: 20px 15px;
+    }
+
+    .admin-box {
+        padding: 25px 20px;
+    }
+
+    .admin-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .admin-header h1 {
+        font-size: 26px;
+    }
+
+    .admin-cards {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* ==========================
+   ADMIN MENU
+========================== */
+
+.admin-menu-page {
+    min-height: 100vh;
+    background: #fffaf5;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.admin-menu-box {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    background: white;
+    padding: 35px;
+    border-radius: 24px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+}
+
+/* Header */
+
+.admin-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.admin-menu-header h1 {
+    margin: 0 0 6px;
+    color: #263238;
+    font-size: 30px;
+}
+
+.admin-menu-header h1 i {
+    color: #e8752b;
+}
+
+.admin-menu-header p {
+    margin: 0;
+    color: #777;
+}
+
+.back-admin {
+    color: #e8752b;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-admin:hover {
+    text-decoration: underline;
+}
+
+
+/* Add Food */
+
+.add-food-box {
+    background: #fffaf5;
+    border: 1px solid #eee;
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 35px;
+}
+
+.add-food-box h2,
+.admin-food-list h2 {
+    margin: 0 0 20px;
+    color: #263238;
+}
+
+.add-food-box form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.add-food-box input,
+.add-food-box textarea {
+    width: 100%;
+    padding: 14px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: white;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.add-food-box textarea {
+    min-height: 110px;
+    resize: vertical;
+    grid-column: 1 / -1;
+}
+
+.add-food-box input:focus,
+.add-food-box textarea:focus {
+    border-color: #e8752b;
+}
+
+.add-food-btn {
+    grid-column: 1 / -1;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background: #e8752b;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.add-food-btn:hover {
+    background: #d9631c;
+}
+
+
+/* Food List */
+
+.admin-food-list {
+    width: 100%;
+}
+
+#adminFoodContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+/* Food Card */
+
+.admin-food-card {
+    border: 1px solid #eee;
+    border-radius: 16px;
+    overflow: hidden;
+    background: white;
+}
+
+.admin-food-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+.admin-food-info {
+    padding: 18px;
+}
+
+.admin-food-info h3 {
+    margin: 0 0 8px;
+    color: #263238;
+}
+
+.admin-food-info p {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.admin-food-price {
+    display: block;
+    margin: 12px 0;
+    color: #e8752b;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.admin-food-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.admin-food-actions button {
+    flex: 1;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.edit-food-btn {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.delete-food-btn {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+
+/* Mobile */
+
+@media (max-width: 750px) {
+
+    .admin-menu-page {
+        padding: 20px 15px;
+    }
+
+    .admin-menu-box {
+        padding: 25px 20px;
+    }
+
+    .admin-menu-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .add-food-box form {
+        grid-template-columns: 1fr;
+    }
+
+    .add-food-box textarea,
+    .add-food-btn {
+        grid-column: auto;
+    }
+
+    #adminFoodContainer {
+        grid-template-columns: 1fr;
+    }
+
+}

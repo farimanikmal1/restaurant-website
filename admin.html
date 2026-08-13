@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Panel</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <section class="admin-page">
+
+        <div class="admin-box">
+
+            <!-- HEADER -->
+
+            <div class="admin-header">
+
+                <div>
+
+                    <h1>
+                        <i class="fa-solid fa-user-shield"></i>
+                        Admin Panel
+                    </h1>
+
+                    <p>
+                        Manage your restaurant
+                    </p>
+
+                </div>
+
+                <button
+                    class="admin-logout"
+                    onclick="adminLogout()">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Logout
+
+                </button>
+
+            </div>
+
+
+            <!-- DASHBOARD -->
+
+            <div class="admin-cards">
+
+                <div class="admin-card">
+
+                    <i class="fa-solid fa-utensils"></i>
+
+                    <h3>Menu</h3>
+
+                    <p>Manage food items</p>
+
+                    <button onclick="openAdminMenu()">
+                        Manage Menu
+                    </button>
+
+                </div>
+
+
+                <div class="admin-card">
+
+                    <i class="fa-solid fa-box"></i>
+
+                    <h3>Orders</h3>
+
+                    <p>View customer orders</p>
+
+                    <button onclick="openAdminOrders()">
+                        Manage Orders
+                    </button>
+
+                </div>
+
+
+                <div class="admin-card">
+
+                    <i class="fa-solid fa-gift"></i>
+
+                    <h3>Offers</h3>
+
+                    <p>Manage special offers</p>
+
+                    <button onclick="openAdminOffers()">
+                        Manage Offers
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- BACK HOME -->
+
+            <a
+                href="index.html"
+                class="admin-home">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Restaurant
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
