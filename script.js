@@ -1551,7 +1551,6 @@ function forgotPassword(event) {
     window.location.href = "login.html";
 
 }
-
 // ==========================
 // Contact Us
 // ==========================
@@ -1570,9 +1569,14 @@ function sendMessage(event) {
         'input[type="email"]'
     ).value.trim();
 
-    co   isNaN(price) ||
-        image === "" ||
-        description === ""
+    const message = form.querySelector(
+        "textarea"
+    ).value.trim();
+
+    if (
+        name === "" ||
+        email === "" ||
+        message === ""
     ) {
 
         alert("Please fill in all fields.");
@@ -1580,153 +1584,11 @@ function sendMessage(event) {
         return;
     }
 
+    alert("Your message has been sent successfully! 🎉");
 
-    // Get existing foods
-
-    let foods =
-        JSON.parse(
-            localStorage.getItem("adminFoods")
-        ) || [];
-
-
-    // Create food
-
-    const food = {
-
-        id: Date.now(),
-
-        name: name,
-
-        price: price,
-
-        image: image,
-
-        description: description
-
-    };
-
-
-    // Add food
-
-    foods.push(food);
-
-
-    // Save foods
-
-    localStorage.setItem(
-        "adminFoods",
-        JSON.stringify(foods)
-    );
-
-
-    // Clear form
-
-    document.getElementById("foodName").value = "";
-
-    document.getElementById("foodPrice").value = "";
-
-    document.getElementById("foodImage").value = "";
-
-    document.getElementById("foodDescription").value = "";
-
-
-    // Refresh list
-
-    loadAdminFoods();
-
-
-    alert("Food has been added successfully! 🎉");
+    form.reset();
 
 }
-
-
-// ==========================
-// Load Admin Foods
-// ==========================
-
-function loadAdminFoods() {
-
-    const container =
-        document.getElementById("adminFoodContainer");
-
-    if (!container) return;
-
-
-    const foods =
-        JSON.parse(
-            localStorage.getItem("adminFoods")
-        ) || [];
-
-
-    if (foods.length === 0) {
-
-        container.innerHTML = `
-            <p class="empty-admin-foods">
-                No food items yet.
-            </p>
-        `;
-
-        return;
-    }
-
-
-    container.innerHTML = "";
-
-
-    foods.forEach(food => {
-
-        container.innerHTML += `
-
-            <div class="admin-food-card">
-
-                <img
-                    src="${food.image}"
-                    alt="${food.name}">
-
-                <div class="admin-food-info">
-
-                    <h3>${food.name}</h3>
-
-                    <p>
-                        ${food.description}
-                    </p>
-
-                    <span class="admin-food-price">
-                        ${food.price.toFixed(2)} €
-                    </span>
-
-                    <div class="admin-food-actions">
-
-                        <button
-                            class="edit-food-btn"
-                            onclick="editFood(${food.id})">
-
-                            <i class="fa-solid fa-pen"></i>
-                            Edit
-
-                        </button>
-
-                        <button
-                            class="delete-food-btn"
-                            onclick="deleteFood(${food.id})">
-
-                            <i class="fa-solid fa-trash"></i>
-                            Delete
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        `;
-
-    });
-
-}
-
 
 
 // ==========================
@@ -1795,7 +1657,14 @@ function addFood(event) {
     );
 
 
-    document.getElementById("addFoodForm").reset();
+    const form =
+        document.getElementById("addFoodForm");
+
+    if (form) {
+
+        form.reset();
+
+    }
 
 
     loadAdminFoods();
@@ -1895,13 +1764,177 @@ function loadAdminFoods() {
 
 
 // ==========================
-// Admin Menu Form
+// Delete Food
+// ==========================
+
+function deleteFood(foodId) {
+
+    let foods =
+        JSON.parse(
+            localStorage.getItem("adminFoods")
+        ) || [];
+
+
+    foods =
+        foods.filter(food => food.id !== foodId);
+
+
+    localStorage.setItem(
+        "adminFoods",
+        JSON.stringify(foods)
+    );
+
+
+    loadAdminFoods();
+
+
+    alert("Food has been deleted.");
+
+}
+
+
+// ==========================
+// Edit Food
+// ==========================
+
+function editFood(foodId) {
+
+    let foods =
+        JSON.parse(
+            localStorage.getItem("adminFoods")
+        ) || [];
+
+
+    const food =
+        foods.find(item => item.id === foodId);
+
+
+    if (!food) return;
+
+
+    const newName =
+        prompt("Food name:", food.name);
+
+    if (newName === null) return;
+
+
+    const newPrice =
+        prompt("Price:", food.price);
+
+    if (newPrice === null) return;
+
+
+    const newDescription =
+        prompt(
+            "Description:",
+            food.description
+        );
+
+    if (newDescription === null) return;
+
+
+    food.name = newName.trim();
+
+    food.price = parseFloat(newPrice);
+
+    food.description =
+        newDescription.trim();
+
+
+    localStorage.setItem(
+        "adminFoods",
+        JSON.stringify(foods)
+    );
+
+
+    loadAdminFoods();
+
+
+    alert("Food has been updated successfully! 🎉");
+
+}
+
+
+// ==========================
+// Show Admin Foods on Home
+// ==========================
+
+function loadAdminFoodsOnHome() {
+
+    const cardsContainer =
+        document.querySelector(".cards");
+
+    if (!cardsContainer) return;
+
+
+    const foods =
+        JSON.parse(
+            localStorage.getItem("adminFoods")
+        ) || [];
+
+
+    foods.forEach(function(food) {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "card admin-added-food";
+
+
+        card.innerHTML = `
+
+            <span
+                class="favorite"
+                onclick="toggleFavorite(this)">
+                ♡
+            </span>
+
+            <img
+                src="${food.image}"
+                alt="${food.name}">
+
+            <h3>
+                ${food.name}
+            </h3>
+
+            <p>
+                ${food.description}
+            </p>
+
+            <span>
+                ${Number(food.price).toFixed(2)} €
+            </span>
+
+            <button
+                onclick="orderFood(
+                    '${food.name}',
+                    ${food.price}
+                )">
+
+                Order Now
+
+            </button>
+
+        `;
+
+
+        cardsContainer.appendChild(card);
+
+    });
+
+}
+
+
+// ==========================
+// Load Admin Menu
 // ==========================
 
 window.addEventListener("load", function() {
 
     const form =
         document.getElementById("addFoodForm");
+
 
     if (form) {
 
@@ -1914,5 +1947,22 @@ window.addEventListener("load", function() {
 
 
     loadAdminFoods();
+
+});
+
+
+// ==========================
+// Load Admin Foods on Home
+// ==========================
+
+window.addEventListener("load", function() {
+
+    if (
+        document.querySelector(".cards")
+    ) {
+
+        loadAdminFoodsOnHome();
+
+    }
 
 });
