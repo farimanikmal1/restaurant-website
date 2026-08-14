@@ -3422,3 +3422,67 @@ Reviews
     }
 
 }
+
+
+/* ==========================
+   MOBILE BUTTON CLICK FIX
+========================== */
+
+@media (max-width: 770px) {
+
+    /* Header stays above page content */
+    header {
+        position: relative;
+        z-index: 10000;
+    }
+
+    /* Menu button */
+    .menu-toggle {
+        position: absolute;
+        z-index: 10002;
+        pointer-events: auto;
+        touch-action: manipulation;
+    }
+
+    /* Cart button */
+    .cart-icon {
+        position: fixed;
+        z-index: 10001;
+        pointer-events: auto;
+        touch-action: manipulation;
+    }
+
+    /* Side menu should NOT block the page when closed */
+    .side-menu {
+        z-index: 10003;
+        pointer-events: none;
+    }
+
+    /* Side menu can receive touches when open */
+    .side-menu.active {
+        pointer-events: auto;
+    }
+
+    /* All buttons and links should accept touch */
+    button,
+    a,
+    input,
+    textarea,
+    select {
+        touch-action: manipulation;
+    }
+
+    /* Food buttons */
+    .card button {
+        position: relative;
+        z-index: 20;
+        pointer-events: auto;
+    }
+
+    /* Favorite button */
+    .favorite {
+        z-index: 30;
+        pointer-events: auto;
+    }
+
+}
